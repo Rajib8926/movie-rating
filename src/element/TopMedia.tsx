@@ -1,0 +1,177 @@
+import { Box, Grid, Typography } from "@mui/material";
+import { usePosts } from "../PostProvider";
+import { FaBookmark, FaRegBookmark, FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router";
+import { motion } from "motion/react";
+import { useState } from "react";
+import { mediaType } from "../pages/media/Media";
+type dataType = {
+  data: mediaType;
+};
+
+export default function TopMedia() {
+  const { topMedia } = usePosts();
+
+  return (
+    <Grid container spacing={2}>
+      {topMedia?.map((data) => (
+        <Cards data={data} />
+      ))}
+    </Grid>
+  );
+}
+
+const MotionBox = motion(Box);
+function Cards({ data }: dataType) {
+  const { addAndRemoveBookMark, bookmark } = usePosts();
+  const navigate = useNavigate();
+  function mediaClickFn(id: string) {
+    navigate(`/media/${id}`);
+  }
+  let isInBookmark = false;
+  if (bookmark) {
+    isInBookmark = bookmark.includes(data.imdbID);
+  }
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <Grid item key={data.imdbID} xs={4}>
+      <MotionBox
+        onClick={() => mediaClickFn(data.imdbID)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        animate={{
+          zIndex: isHovered ? "2" : "1",
+          width: isHovered ? "120%" : "100%",
+          height: isHovered ? "120%" : "100%",
+          marginLeft: isHovered ? "-10%" : "0%",
+          marginTop: isHovered ? "-5%" : "0%",
+          transition: { duration: 0.3 },
+          background: isHovered ? "#1c1e2f9b" : "",
+          backdropFilter: "blur(4px)",
+          boxShadow: isHovered ? "0px 0px 12px 5px #595c7c52" : "none",
+        }}
+        sx={{
+          background: "#1C1E2F",
+          width: "100%",
+          padding: "5px",
+          borderRadius: "7px",
+          position: "relative",
+          cursor: "pointer",
+          display: "flex",
+        }}
+      >
+        <Box
+          sx={{
+            // width: "135px",
+            width: "30%",
+            height: isHovered ? "100%" : "200px",
+            backgroundImage: `url(${data.Poster})`,
+            backgroundSize: "cover",
+            borderRadius: "4px",
+          }}
+        ></Box>
+        <Box
+          sx={{
+            padding: "10px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "7px",
+            width: "70%",
+          }}
+        >
+          <Box>
+            <Typography sx={{ fontWeight: "600", fontSize: "15px" }}>
+              {data.Title}
+            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <Typography sx={{ fontSize: "11px", fontWeight: "600" }}>
+                {data.Year}
+              </Typography>
+              <Box
+                sx={{
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  background: "#B7B7B8",
+                }}
+              ></Box>
+              <Typography sx={{ fontSize: "11px", fontWeight: "600" }}>
+                {data.Rated}
+              </Typography>
+              <Box
+                sx={{
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  background: "#B7B7B8",
+                }}
+              ></Box>
+              <Typography sx={{ fontSize: "11px", fontWeight: "600" }}>
+                {data.Runtime}
+              </Typography>
+            </Box>
+          </Box>
+          <Box>
+            <Box>
+              <Box sx={{ display: "flex" }}>
+                <Typography sx={{ fontSize: "13px", fontWeight: "600" }}>
+                  Director:{" "}
+                </Typography>
+                <Typography sx={{ fontSize: "13px" }}>
+                  {data.Director}
+                </Typography>
+              </Box>
+              <Box sx={{ display: "flex" }}>
+                <Typography sx={{ fontSize: "13px", fontWeight: "600" }}>
+                  Writer:{" "}
+                </Typography>
+                <Typography sx={{ fontSize: "13px" }}>{data.Writer}</Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box>
+            <Box sx={{ display: "flex", gap: "3px" }}>
+              <Typography
+                sx={{ fontSize: "15px", fontWeight: "600", color: "#fde03c" }}
+              >
+                IMDB
+              </Typography>
+              <Typography sx={{ fontSize: "15px", fontWeight: "600" }}>
+                Rating
+              </Typography>
+            </Box>
+            <Box>
+              <Box sx={{ display: "flex", gap: "5px" }}>
+                <FaStar color="#fde03c" />
+                <Box sx={{ display: "flex" }}>
+                  <Typography fontSize={"13px"} fontWeight={"600"}>
+                    {data.imdbRating}/
+                  </Typography>
+                  <Typography fontSize={"13px"} fontWeight={"600"}>
+                    10
+                  </Typography>
+                </Box>
+              </Box>
+              <Typography fontSize={"10px"}>{data.imdbVotes}</Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          onClick={(e) => {
+            e.stopPropagation();
+
+            addAndRemoveBookMark(data.imdbID);
+          }}
+          sx={{
+            position: "absolute",
+            top: "15px",
+            right: "15px",
+            cursor: "pointer",
+          }}
+        >
+          {isInBookmark ? <FaBookmark /> : <FaRegBookmark fontSize={"17px"} />}
+        </Box>
+      </MotionBox>
+    </Grid>
+  );
+}
