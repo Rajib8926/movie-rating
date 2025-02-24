@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import { MdCatchingPokemon } from "react-icons/md";

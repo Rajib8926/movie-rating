@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
+import "../../../node_modules/swiper/swiper.css";
+import "../../../node_modules/swiper/modules/pagination-element.css";
 
 import "./slider.css";
 
