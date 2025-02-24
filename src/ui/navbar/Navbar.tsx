@@ -7,6 +7,7 @@ import { FaRegBookmark, FaTv } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { MdCatchingPokemon, MdMovie } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router";
+import { usePosts } from "../../PostProvider";
 const navLinkStyle = {
   color: "#B7B7B8",
   textDecoration: "none",
@@ -21,6 +22,7 @@ const navLinkStyle = {
 };
 const MotionBox = motion(Box);
 export default function Navbar() {
+  const { setIsLoading } = usePosts();
   const useNav = useNavigate();
   return (
     <Box
@@ -72,22 +74,38 @@ export default function Navbar() {
             <IoHome fontSize={"20px"} />
             <Typography sx={{ fontSize: "18px" }}>Home</Typography>
           </NavLink>
-          <NavLink to={"/movie"} style={navLinkStyle}>
+          <NavLink
+            to={"/movie"}
+            style={navLinkStyle}
+            onClick={() => setIsLoading(true)}
+          >
             <MdMovie fontSize={"22px"} />{" "}
             <Typography sx={{ fontSize: "18px" }}>Movies</Typography>
           </NavLink>
-          <NavLink to={"/anime"} style={navLinkStyle}>
+          <NavLink
+            to={"/anime"}
+            style={navLinkStyle}
+            onClick={() => setIsLoading(true)}
+          >
             <MdCatchingPokemon fontSize={"22px"} />{" "}
             <Typography sx={{ fontSize: "18px" }}>Anime</Typography>
           </NavLink>
 
-          <NavLink to={"/tvSeries"} style={navLinkStyle}>
+          <NavLink
+            to={"/tvSeries"}
+            style={navLinkStyle}
+            onClick={() => setIsLoading(true)}
+          >
             <FaTv fontSize={"20px"} />
             <Typography sx={{ fontSize: "18px" }}>Tv series</Typography>
           </NavLink>
         </Box>
         <Box sx={{ width: "94%" }}>
-          <NavLink to={"/bookmark"} style={navLinkStyle}>
+          <NavLink
+            to={"/bookmark"}
+            style={navLinkStyle}
+            onClick={() => setIsLoading(true)}
+          >
             <FaRegBookmark fontSize={"20px"} />{" "}
             <Typography sx={{ fontSize: "18px" }}>Bookmark</Typography>
           </NavLink>

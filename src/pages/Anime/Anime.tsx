@@ -4,6 +4,7 @@ import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import { MdCatchingPokemon } from "react-icons/md";
 import TopMedia from "../../element/TopMedia";
+import Loading from "../../element/imageSlider/Loading";
 const topAnime = [
   "tt2560140",
   "tt0388629",
@@ -38,7 +39,7 @@ const topAnime = [
 ];
 
 export default function Anime() {
-  const { searchTopEntertainments } = usePosts();
+  const { searchTopEntertainments, isLoading } = usePosts();
   useEffect(function () {
     searchTopEntertainments(topAnime);
   }, []);
@@ -61,21 +62,27 @@ export default function Anime() {
             marginTop: "30px",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              marginBottom: "20px",
-            }}
-          >
-            <MdCatchingPokemon fontSize={"23px"} />
-            <Typography sx={{ fontSize: "18px" }}>
-              Anime Recommendation
-            </Typography>
-          </Box>
-          <></>
-          <TopMedia />
+          {!isLoading ? (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  marginBottom: "20px",
+                }}
+              >
+                <MdCatchingPokemon fontSize={"23px"} />
+                <Typography sx={{ fontSize: "18px" }}>
+                  Anime Recommendation
+                </Typography>
+              </Box>
+              <></>
+              <TopMedia />
+            </>
+          ) : (
+            <Loading />
+          )}
         </Box>
       </Box>
     </Box>

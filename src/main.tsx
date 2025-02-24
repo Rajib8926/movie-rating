@@ -8,10 +8,8 @@ import PostProvider from "./PostProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PostProvider>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </PostProvider>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </StrictMode>
 );

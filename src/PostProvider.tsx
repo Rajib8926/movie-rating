@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { mediaType } from "./pages/media/Media";
+
 interface childrenType {
   children: React.ReactNode;
 }
@@ -14,13 +15,19 @@ interface contextType {
   searchTopEntertainments(dataList: string[]): any[];
   topMedia: mediaType[] | null;
   bookmark: string[] | null;
+  setTopMedia: React.Dispatch<React.SetStateAction<mediaType[] | null>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const PostContext = createContext({} as contextType);
 export default function PostProvider({ children }: childrenType) {
   const [bookmark, setBookmark] = useState<string[] | null>(null);
   const [searchOverlay, setSearchOverlay] = useState<boolean>(false);
   const [topMedia, setTopMedia] = useState<mediaType[] | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const testValue: number = 10;
+  
+
   function openOverlay() {
     setSearchOverlay(true);
   }
@@ -52,7 +59,9 @@ export default function PostProvider({ children }: childrenType) {
     });
 
     console.log(dataArr);
-    Promise.all(dataArr).then((value) => setTopMedia(value));
+    Promise.all(dataArr)
+      .then((value) => setTopMedia(value))
+      .then(() => setIsLoading(false));
   }
   console.log(topMedia);
 
@@ -127,6 +136,9 @@ export default function PostProvider({ children }: childrenType) {
         searchTopEntertainments,
         topMedia,
         bookmark,
+        setTopMedia,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

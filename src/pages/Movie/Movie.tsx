@@ -4,6 +4,7 @@ import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import TopMedia from "../../element/TopMedia";
 import { MdMovie } from "react-icons/md";
+import Loading from "../../element/imageSlider/Loading";
 
 const TopMovieId = [
   "tt15239678",
@@ -28,7 +29,7 @@ const TopMovieId = [
   "tt5177114",
 ];
 export default function Movie() {
-  const { searchTopEntertainments, topMedia } = usePosts();
+  const { searchTopEntertainments, topMedia, isLoading } = usePosts();
   useEffect(function () {
     async function getData() {
       searchTopEntertainments(TopMovieId);
@@ -61,14 +62,27 @@ export default function Movie() {
             marginTop: "30px",
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center", gap: "5px" ,marginBottom:"20px" }}>
-            <MdMovie fontSize={"23px"} />
-            <Typography sx={{ fontSize: "18px"}}>
-              Movie Recommendation
-            </Typography>
-          </Box>
-          <></>
-          <TopMedia />
+          {!isLoading ? (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  marginBottom: "20px",
+                }}
+              >
+                <MdMovie fontSize={"23px"} />
+                <Typography sx={{ fontSize: "18px" }}>
+                  Movie Recommendation
+                </Typography>
+              </Box>
+
+              <TopMedia />
+            </>
+          ) : (
+            <Loading />
+          )}
         </Box>
       </Box>
     </Box>

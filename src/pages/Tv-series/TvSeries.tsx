@@ -4,6 +4,7 @@ import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import { FaTv } from "react-icons/fa";
 import TopMedia from "../../element/TopMedia";
+import Loading from "../../element/imageSlider/Loading";
 const topTvSeries = [
   "tt0903747", // Breaking Bad
   "tt5491994", // Planet Earth II
@@ -37,7 +38,7 @@ const topTvSeries = [
   "tt0121955", // South Park
 ];
 export default function TvSeries() {
-  const { searchTopEntertainments } = usePosts();
+  const { searchTopEntertainments, isLoading } = usePosts();
   useEffect(function () {
     searchTopEntertainments(topTvSeries);
   }, []);
@@ -60,21 +61,27 @@ export default function TvSeries() {
             marginTop: "30px",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              marginBottom: "20px",
-            }}
-          >
-            <FaTv fontSize={"23px"} />
-            <Typography sx={{ fontSize: "18px" }}>
-              Tv Recommendation
-            </Typography>
-          </Box>
-          <></>
-          <TopMedia />
+          {!isLoading ? (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  marginBottom: "20px",
+                }}
+              >
+                <FaTv fontSize={"23px"} />
+                <Typography sx={{ fontSize: "18px" }}>
+                  Tv Recommendation
+                </Typography>
+              </Box>
+
+              <TopMedia />
+            </>
+          ) : (
+            <Loading />
+          )}
         </Box>
       </Box>
     </Box>

@@ -35,8 +35,10 @@ interface dataType {
 }
 const MotionBox = motion(Box);
 export default function Home() {
-  const { testValue, searchTopEntertainments, topMedia } = usePosts();
+  const { testValue, searchTopEntertainments, topMedia, setTopMedia } =
+    usePosts();
   useEffect(function () {
+    // setTopMedia(null);
     searchTopEntertainments(topMovieWebSeries);
   }, []);
   console.log(testValue);
@@ -99,8 +101,10 @@ function MovieWebItem({ data }: dataType) {
         }}
       >
         <MotionBox
-        whileHover={{backgroundImage:
-          "linear-gradient(to top, rgba(0, 0, 0, 0.932),rgba(0, 0, 0, 0.212), rgba(0, 0, 0, 0.938))",}}
+          whileHover={{
+            backgroundImage:
+              "linear-gradient(to top, rgba(0, 0, 0, 0.932),rgba(0, 0, 0, 0.212), rgba(0, 0, 0, 0.938))",
+          }}
           sx={{
             width: "100%",
             height: "100%",
