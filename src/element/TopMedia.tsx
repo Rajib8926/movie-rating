@@ -15,7 +15,7 @@ export default function TopMedia() {
   return (
     <Grid container spacing={2}>
       {topMedia?.map((data) => (
-        <Cards data={data} />
+        <Cards data={data} key={data.imdbID}/>
       ))}
     </Grid>
   );
@@ -34,7 +34,7 @@ function Cards({ data }: dataType) {
   }
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <Grid item key={data.imdbID} xs={4}>
+    <Grid item xs={4}>
       <MotionBox
         onClick={() => mediaClickFn(data.imdbID)}
         onMouseEnter={() => setIsHovered(true)}

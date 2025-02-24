@@ -1,12 +1,12 @@
 import { Box, Grid, Typography } from "@mui/material";
 import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
-import ImageSlider from "../../element/ImageSlider/ImageSlider";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 import { mediaType } from "../media/Media";
 import { FaStar } from "react-icons/fa";
+import ImageSlider from "../../element/imageSlider/ImageSlider";
 
 const topMovieWebSeries = [
   "tt0111161", // The Shawshank Redemption
@@ -35,8 +35,7 @@ interface dataType {
 }
 const MotionBox = motion(Box);
 export default function Home() {
-  const { testValue, searchTopEntertainments, topMedia, setTopMedia } =
-    usePosts();
+  const { testValue, searchTopEntertainments, topMedia } = usePosts();
   useEffect(function () {
     // setTopMedia(null);
     searchTopEntertainments(topMovieWebSeries);
@@ -62,7 +61,7 @@ export default function Home() {
             marginTop: "40px",
           }}
         >
-          <ImageSlider></ImageSlider>
+          <ImageSlider />
         </Box>
         <Box sx={{ width: "96%", marginTop: "50px" }}>
           <Box sx={{ marginBottom: "30px" }}>

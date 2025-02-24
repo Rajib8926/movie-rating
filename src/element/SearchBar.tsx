@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
-interface SearchItem {
+interface SearchItemType {
   Poster: string;
   Title: string;
   Type: string;
@@ -12,9 +12,14 @@ interface SearchItem {
   imdbID: string;
 }
 interface SearchResult {
-  Search: SearchItem[];
+  Search: SearchItemType[];
   totalResults: string;
   Response: string;
+}
+interface searchItemType {
+  data: SearchItemType;
+  closeOverlay: () => void;
+  setSearchContent: React.Dispatch<React.SetStateAction<string>>;
 }
 const CustomDialog = styled(TextField)({
   "& .MuiInputBase-root": {
@@ -39,20 +44,17 @@ const CustomDialog = styled(TextField)({
 });
 const MotionBox = motion(Box);
 export default function SearchBar() {
-  const [searchResult, setSearchResult] = useState<SearchItem[]>();
+  const [searchResult, setSearchResult] = useState<SearchItemType[]>();
   const [searchContent, setSearchContent] = useState("");
   const { searchOperation, openOverlay, closeOverlay, searchOverlay } =
     usePosts();
   useEffect(
     function () {
       async function searchFn() {
-        console.log(searchContent);
+        const MovData: SearchResult = await searchOperation(searchContent);
 
-        const data: SearchResult = await searchOperation(searchContent);
-        console.log(data);
-
-        setSearchResult(data.Search);
-        console.log(data.Search);
+        setSearchResult(MovData.Search);
+        console.log(MovData.Search);
       }
       searchFn();
     },
@@ -99,7 +101,6 @@ export default function SearchBar() {
               flexDirection: "column",
               gap: "10px",
               width: "100%",
-              zIndex: "2",
               overflow: "auto",
               zIndex: "5",
             }}
@@ -124,7 +125,7 @@ export default function SearchBar() {
   );
 }
 
-function SearchItem({ data, setSearchContent, closeOverlay }) {
+function SearchItem({ data, setSearchContent, closeOverlay }: searchItemType) {
   const navigate = useNavigate();
   function itemClickHandler(id: string) {
     navigate(`/media/${id}`);

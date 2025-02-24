@@ -1,10 +1,10 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useEffect } from "react";
 import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import TopMedia from "../../element/TopMedia";
 import { MdMovie } from "react-icons/md";
-import Loading from "../../element/imageSlider/Loading";
+import Loading from "../../element/Loading";
 
 const TopMovieId = [
   "tt15239678",

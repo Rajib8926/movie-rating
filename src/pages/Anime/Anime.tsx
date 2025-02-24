@@ -4,7 +4,7 @@ import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import { MdCatchingPokemon } from "react-icons/md";
 import TopMedia from "../../element/TopMedia";
-import Loading from "../../element/imageSlider/Loading";
+import Loading from "../../element/Loading";
 const topAnime = [
   "tt2560140",
   "tt0388629",

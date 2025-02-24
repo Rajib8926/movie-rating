@@ -4,7 +4,7 @@ import { usePosts } from "../../PostProvider";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "../../element/SearchBar";
 import { FaBookmark, FaRegBookmark, FaStar } from "react-icons/fa";
-import Loading from "../../element/imageSlider/Loading";
+import Loading from "../../element/Loading";
 interface Ratings {
   Source: string;
   Value: string;
@@ -44,13 +44,15 @@ export default function Media() {
   if (bookmark && mediaInfo) {
     isInBookmark = bookmark.includes(mediaInfo.imdbID);
   }
-  console.log(idOfMedia);
+
   useEffect(
     function () {
       async function dataCall() {
-        const data = await searchMediaById(idOfMedia);
-        console.log(data);
-        setMediaInfo(data);
+        if (idOfMedia) {
+          const data = await searchMediaById(idOfMedia);
+          console.log(data);
+          setMediaInfo(data);
+        }
       }
       dataCall();
     },

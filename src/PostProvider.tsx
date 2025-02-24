@@ -6,13 +6,13 @@ interface childrenType {
 }
 interface contextType {
   testValue: number;
-  searchOperation(searchName: string): void;
-  searchMediaById(id: Text): Promise<any>;
+  searchOperation(searchName: string): Promise<any>
+  searchMediaById(id: string): Promise<any>;
   addAndRemoveBookMark(id: string): void;
   openOverlay(): void;
   closeOverlay(): void;
   searchOverlay: boolean;
-  searchTopEntertainments(dataList: string[]): any[];
+  searchTopEntertainments(dataList: string[]): void;
   topMedia: mediaType[] | null;
   bookmark: string[] | null;
   setTopMedia: React.Dispatch<React.SetStateAction<mediaType[] | null>>;
@@ -36,8 +36,8 @@ export default function PostProvider({ children }: childrenType) {
   }
   function searchTopEntertainments(dataList: string[]) {
     console.log(dataList);
-
-    let dataArr = dataList.map(async (mediaId) => {
+    setIsLoading(true)
+    const dataArr = dataList.map(async (mediaId) => {
       let returnVal;
       try {
         const response = await fetch(
@@ -90,7 +90,7 @@ export default function PostProvider({ children }: childrenType) {
 
       if (result) {
         console.log("this is already in bookmark");
-        let filteredArray = bookmark.filter((number) => number !== id);
+        const filteredArray = bookmark.filter((number) => number !== id);
         if (filteredArray.length === 0) {
           setBookmark(null);
         } else {
@@ -106,7 +106,7 @@ export default function PostProvider({ children }: childrenType) {
   }
   console.log(bookmark);
 
-  async function searchMediaById(id: Text) {
+  async function searchMediaById(id: string) {
     try {
       const response = await fetch(
         `https://www.omdbapi.com/?i=${id}&apikey=c892d3a9`

@@ -1,6 +1,6 @@
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import Button from "@mui/material/Button";
+
 import { useState } from "react";
 import { styled } from "@mui/material";
 const CustomBackdrop = styled(Backdrop)({
@@ -12,9 +12,9 @@ export default function Loading() {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   return (
     <div>

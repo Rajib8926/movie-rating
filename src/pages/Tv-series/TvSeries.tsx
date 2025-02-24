@@ -4,7 +4,7 @@ import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import { FaTv } from "react-icons/fa";
 import TopMedia from "../../element/TopMedia";
-import Loading from "../../element/imageSlider/Loading";
+import Loading from "../../element/Loading";
 const topTvSeries = [
   "tt0903747", // Breaking Bad
   "tt5491994", // Planet Earth II
