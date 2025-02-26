@@ -13,17 +13,18 @@ import { IoIosMail } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
 import { MdCatchingPokemon, MdMovie } from "react-icons/md";
 import { SiUpwork } from "react-icons/si";
+import { Turn as Hamburger } from "hamburger-react";
 import {
   NavigateFunction,
   NavLink,
   useLocation,
   useNavigate,
 } from "react-router";
+import TemporaryDrawer from "../../element/Drawer";
 
 const navLinkStyle = {
   color: "#B7B7B8",
   textDecoration: "none",
-  // border: "1px solid",
   height: "50px",
   display: "flex",
   alignItems: "center",
@@ -37,12 +38,6 @@ const aTagStyle = {
   color: "#B7B7B8",
   fontSize: "19px",
 };
-// let navCurrentLocation: number = 0;
-// let homeLocation: number;
-// let movieLocation: number;
-// let TvLocation: number;
-// let AnimeLocation: number;
-// let BookmarkLocation: number;
 
 const MotionBox = motion(Box);
 export default function Navbar() {
@@ -83,6 +78,10 @@ export default function Navbar() {
       getPositionRelativeToParent(bookmarkRef);
     }
   }
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
   useEffect(
     function () {
       assignLocation();
@@ -96,19 +95,21 @@ export default function Navbar() {
         width: { xl: "16%", md: "20%" },
         background: "#ffffff16",
         borderRadius: "10px",
-        flexFlow: "column",
-        display: { md: "flex", xxs: "none" },
+        flexFlow: { md: "column" },
+        display: { md: "flex", xxs: "flex" },
         alignItems: "center",
-        gap: "110px",
-        paddingTop: "100px",
+        gap: { md: "110px" },
+        paddingTop: { md: "100px" },
+        padding: { md: "", xxs: "5px 10px" },
         position: "relative",
+        justifyContent: { md: "flex-start", xxs: "space-between" },
       }}
     >
       <Box
         onClick={() => navigate("/")}
         sx={{
-          height: "110px",
-          width: "110px",
+          height: { md: "110px", xxs: "60px" },
+          width: { md: "110px", xxs: "60px" },
           bgcolor: "#ffffff16",
           borderRadius: "50%",
           display: "flex",
@@ -117,12 +118,16 @@ export default function Navbar() {
           cursor: "pointer",
         }}
       >
-        <MdMovie fontSize={"40px"} color="#d8a900" />
+        <MdMovie fontSize={"30px"} color="#d8a900" />
       </Box>
+      <Box sx={{ display: { md: "none", xxs: "block" } }}>
+        <Hamburger toggled={isOpen} toggle={setOpen} />
+      </Box>
+      <TemporaryDrawer open={isOpen} toggleDrawer={toggleDrawer} />
       <Box
         ref={parentRef}
         sx={{
-          display: "flex",
+          display: { md: "flex", xxs: "none" },
           flexFlow: "column",
           alignItems: "center",
           width: "100%",
@@ -186,7 +191,7 @@ export default function Navbar() {
         sx={{
           position: "absolute",
           bottom: "20px",
-          display: "flex",
+          display: { md: "flex", xxs: "none" },
           gap: { lg: "12px", md: "8px" },
         }}
       >

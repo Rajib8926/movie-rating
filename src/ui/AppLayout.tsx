@@ -10,6 +10,7 @@ export default function AppLayout() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: { md: "row", xxs: "column" },
           height: "100vh",
           padding: "12px",
           gap: "12px",
@@ -22,7 +23,7 @@ export default function AppLayout() {
             borderRadius: "10px",
             // flexGrow: "1",
 
-            width: { xl: "85%", md: "80%",xxs:"100%" },
+            width: { xl: "85%", md: "80%", xxs: "100%" },
 
             background: "#ffffff16",
             overflow: "scroll",
