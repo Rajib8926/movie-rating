@@ -21,7 +21,9 @@ export default function AppLayout() {
           sx={{
             borderRadius: "10px",
             // flexGrow: "1",
-            width: "85%",
+
+            width: { xl: "85%", md: "80%",xxs:"100%" },
+
             background: "#ffffff16",
             overflow: "scroll",
           }}

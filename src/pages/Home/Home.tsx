@@ -35,12 +35,11 @@ interface dataType {
 }
 const MotionBox = motion(Box);
 export default function Home() {
-  const { testValue, searchTopEntertainments, topMedia } = usePosts();
+  const { searchTopEntertainments, topMedia } = usePosts();
   useEffect(function () {
     // setTopMedia(null);
     searchTopEntertainments(topMovieWebSeries);
   }, []);
-  console.log(testValue);
 
   return (
     <Box sx={{ backgroundColor: "transparent", padding: "15px" }}>

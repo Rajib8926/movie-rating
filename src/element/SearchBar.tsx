@@ -54,14 +54,13 @@ export default function SearchBar() {
         const MovData: SearchResult = await searchOperation(searchContent);
 
         setSearchResult(MovData.Search);
-        console.log(MovData.Search);
       }
       searchFn();
     },
     [searchContent]
   );
   return (
-    <Box sx={{ width: "65%" }}>
+    <Box sx={{ width: { lg: "65%" ,xs:"75%"} }}>
       <Box
         onClick={closeOverlay}
         sx={{
@@ -76,8 +75,7 @@ export default function SearchBar() {
       ></Box>
       <Box sx={{ width: "100%", position: "relative" }}>
         <CustomDialog
-          onClick={(e) => {
-            console.log(e);
+          onClick={() => {
             openOverlay();
           }}
           value={searchContent}

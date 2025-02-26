@@ -32,7 +32,7 @@ export default function ImageSlider() {
     navigate(`/media/${id}`);
   }
   function searchTopEntertainments(dataList: string[]) {
-    console.log(dataList);
+    
 
     const dataArr = dataList.map(async (mediaId) => {
       let returnVal;
@@ -55,7 +55,8 @@ export default function ImageSlider() {
       return returnVal;
     });
 
-    console.log(dataArr);
+    
+    
     Promise.all(dataArr).then((value) => setImgSliderMov(value));
   }
   useEffect(function () {

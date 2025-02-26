@@ -27,9 +27,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(79, 88, 116);
 }
-.active {
+/* .active { */
   /* background-color: red; */
-  box-shadow: 0px 0px 10px 2px#4c5279;
+  /* box-shadow: 0px 0px 10px 2px#4c5279; */
 
   /* box-shadow: inset 0px 0px 4px 4px#404666; */
-}
+/* } */

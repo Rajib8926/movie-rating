@@ -29,14 +29,13 @@ const TopMovieId = [
   "tt5177114",
 ];
 export default function Movie() {
-  const { searchTopEntertainments, topMedia, isLoading } = usePosts();
+  const { searchTopEntertainments, isLoading } = usePosts();
   useEffect(function () {
     async function getData() {
       searchTopEntertainments(TopMovieId);
     }
     getData();
   }, []);
-  console.log(topMedia);
 
   return (
     <Box
@@ -58,7 +57,7 @@ export default function Movie() {
         <SearchBar />
         <Box
           sx={{
-            padding: "0 50px",
+            padding: { lg: "0 50px" ,md:"0px"},
             marginTop: "30px",
           }}
         >
