@@ -34,7 +34,7 @@ function Cards({ data }: dataType) {
   }
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <Grid item xl={4} sm={6}>
+    <Grid item xl={4} lsm={6} xxs={12}>
       <MotionBox
         onClick={() => mediaClickFn(data.imdbID)}
         onMouseEnter={() => setIsHovered(true)}
@@ -53,7 +53,7 @@ function Cards({ data }: dataType) {
         sx={{
           background: "#1C1E2F",
           width: "100%",
-          padding: "5px",
+          // padding: "5px",
           borderRadius: "7px",
           position: "relative",
           cursor: "pointer",
@@ -63,8 +63,10 @@ function Cards({ data }: dataType) {
         <Box
           sx={{
             // width: "135px",
-            width: "30%",
-            height: isHovered ? "100%" : "200px",
+            width: { lsm: "140px", sm: "150px", xxs: "120px" },
+            height: isHovered
+              ? "100%"
+              : { lsm: "200px", sm: "230px", xxs: "180px" },
             backgroundImage: `url(${data.Poster})`,
             backgroundSize: "cover",
             borderRadius: "4px",
@@ -114,18 +116,30 @@ function Cards({ data }: dataType) {
           <Box>
             <Box>
               <Box sx={{ display: "flex" }}>
-                <Typography sx={{ fontSize: "13px", fontWeight: "600" }}>
+                <Typography
+                  sx={{
+                    fontSize: { sm: "13px", xxs: "12px" },
+                    fontWeight: "600",
+                  }}
+                >
                   Director:{" "}
                 </Typography>
-                <Typography sx={{ fontSize: "13px" }}>
+                <Typography sx={{ fontSize: { sm: "13px", xxs: "12px" } }}>
                   {data.Director}
                 </Typography>
               </Box>
               <Box sx={{ display: "flex" }}>
-                <Typography sx={{ fontSize: "13px", fontWeight: "600" }}>
+                <Typography
+                  sx={{
+                    fontSize: { sm: "13px", xxs: "12px" },
+                    fontWeight: "600",
+                  }}
+                >
                   Writer:{" "}
                 </Typography>
-                <Typography sx={{ fontSize: "13px" }}>{data.Writer}</Typography>
+                <Typography sx={{ fontSize: { sm: "13px", xxs: "12px" } }}>
+                  {data.Writer}
+                </Typography>
               </Box>
             </Box>
           </Box>

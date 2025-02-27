@@ -43,7 +43,6 @@ const MotionBox = motion(Box);
 export default function Navbar() {
   const [navCurrentLocation, setNavCurrentLocation] = useState<number>(1);
   const parentRef = useRef<HTMLDivElement>();
-  // const childRef = useRef<HTMLDivElement>();
   const homeRef = useRef<HTMLDivElement | undefined>();
   const tvRef = useRef<HTMLDivElement>();
   const movieRef = useRef<HTMLDivElement>();
@@ -108,8 +107,8 @@ export default function Navbar() {
       <Box
         onClick={() => navigate("/")}
         sx={{
-          height: { md: "110px", xxs: "60px" },
-          width: { md: "110px", xxs: "60px" },
+          height: { md: "110px", xxs: "50px" },
+          width: { md: "110px", xxs: "50px" },
           bgcolor: "#ffffff16",
           borderRadius: "50%",
           display: "flex",
@@ -118,7 +117,7 @@ export default function Navbar() {
           cursor: "pointer",
         }}
       >
-        <MdMovie fontSize={"30px"} color="#d8a900" />
+        <MdMovie fontSize={"26px"} color="#d8a900" />
       </Box>
       <Box sx={{ display: { md: "none", xxs: "block" } }}>
         <Hamburger toggled={isOpen} toggle={setOpen} />

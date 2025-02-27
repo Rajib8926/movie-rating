@@ -42,7 +42,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: "transparent", padding: "15px" }}>
+    <Box sx={{ backgroundColor: "transparent", padding: { sm: "15px" ,xxs:"7px"}, }}>
       <Box
         sx={{
           width: "100%",

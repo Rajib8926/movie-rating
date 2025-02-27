@@ -4,6 +4,7 @@ declare module "@mui/material/styles" {
     xxs: true; // Add 'xxs' as a valid breakpoint
     xs: true;
     sm: true;
+    lsm: true;
     md: true;
     lg: true;
     xl: true;
@@ -13,11 +14,12 @@ export const theme = createTheme({
   breakpoints: {
     values: {
       xxs: 0,
-      xs: 400, // Extra-small devices (phones)
-      sm: 600, // Small devices (tablets)
-      md: 1000, // Medium devices (desktops)
-      lg: 1200, // Large devices (large desktops)
-      xl: 1600, // Extra-large devices
+      xs: 400,
+      sm: 600,
+      lsm: 800,
+      md: 1000,
+      lg: 1200,
+      xl: 1600,
     },
   },
   palette: {

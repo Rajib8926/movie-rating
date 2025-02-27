@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import { MdCatchingPokemon } from "react-icons/md";
@@ -44,7 +44,12 @@ export default function Anime() {
     searchTopEntertainments(topAnime);
   }, []);
   return (
-    <Box sx={{ backgroundColor: "transparent", padding: "15px" }}>
+    <Box
+      sx={{
+        backgroundColor: "transparent",
+        padding: { sm: "15px", xxs: "7px 0" },
+      }}
+    >
       <Box
         sx={{
           width: "100%",
@@ -58,7 +63,7 @@ export default function Anime() {
         <SearchBar />
         <Box
           sx={{
-            padding: "0 50px",
+            padding: { sm: "0 50px", xxs: "0 5px" },
             marginTop: "30px",
           }}
         >
@@ -73,7 +78,12 @@ export default function Anime() {
                 }}
               >
                 <MdCatchingPokemon fontSize={"23px"} />
-                <Typography sx={{ fontSize: "18px" }}>
+                <Typography
+                  sx={{
+                    fontSize: { sm: "18px", xxs: "15px" },
+                    fontWeight: { sm: "500",xxs:"600" },
+                  }}
+                >
                   Anime Recommendation
                 </Typography>
               </Box>

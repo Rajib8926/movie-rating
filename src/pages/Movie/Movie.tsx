@@ -41,7 +41,7 @@ export default function Movie() {
     <Box
       sx={{
         backgroundColor: "transparent",
-        padding: "15px",
+        padding: { sm: "15px", xxs: "7px" },
         width: "100%",
       }}
     >
@@ -57,7 +57,7 @@ export default function Movie() {
         <SearchBar />
         <Box
           sx={{
-            padding: { lg: "0 50px" ,md:"0px"},
+            padding: { lg: "0 50px", md: "0px" },
             marginTop: "30px",
           }}
         >
@@ -72,7 +72,12 @@ export default function Movie() {
                 }}
               >
                 <MdMovie fontSize={"23px"} />
-                <Typography sx={{ fontSize: "18px" }}>
+                <Typography
+                  sx={{
+                    fontSize: { sm: "18px", xxs: "15px" },
+                    fontWeight: { xxs: "600", sm: "500" },
+                  }}
+                >
                   Movie Recommendation
                 </Typography>
               </Box>

@@ -22,6 +22,11 @@ interface searchItemType {
   setSearchContent: React.Dispatch<React.SetStateAction<string>>;
 }
 const CustomDialog = styled(TextField)({
+  "& label[data-shrink=false] + .MuiInputBase-formControl .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input":
+    {
+      height: "20px",
+    },
+
   "& .MuiInputBase-root": {
     // height: "45px",
     color: "#a8acb4",
@@ -60,7 +65,7 @@ export default function SearchBar() {
     [searchContent]
   );
   return (
-    <Box sx={{ width: { lg: "65%" ,xs:"75%"} }}>
+    <Box sx={{ width: { lg: "65%", sm: "75%", xxs: "95%" } }}>
       <Box
         onClick={closeOverlay}
         sx={{

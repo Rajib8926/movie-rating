@@ -6,7 +6,7 @@ interface childrenType {
 }
 interface contextType {
   testValue: number;
-  searchOperation(searchName: string): Promise<any>
+  searchOperation(searchName: string): Promise<any>;
   searchMediaById(id: string): Promise<any>;
   addAndRemoveBookMark(id: string): void;
   openOverlay(): void;
@@ -26,7 +26,6 @@ export default function PostProvider({ children }: childrenType) {
   const [topMedia, setTopMedia] = useState<mediaType[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const testValue: number = 10;
-  
 
   function openOverlay() {
     setSearchOverlay(true);
@@ -36,7 +35,7 @@ export default function PostProvider({ children }: childrenType) {
   }
   function searchTopEntertainments(dataList: string[]) {
     console.log(dataList);
-    setIsLoading(true)
+    setIsLoading(true);
     const dataArr = dataList.map(async (mediaId) => {
       let returnVal;
       try {

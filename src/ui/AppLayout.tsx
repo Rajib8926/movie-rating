@@ -12,8 +12,8 @@ export default function AppLayout() {
           display: "flex",
           flexDirection: { md: "row", xxs: "column" },
           height: "100vh",
-          padding: "12px",
-          gap: "12px",
+          padding: { sm: "12px", xxs: "7px" },
+          gap: { sm: "12px", xxs: "7px" },
           background: "#1c1e2f",
         }}
       >
@@ -24,7 +24,7 @@ export default function AppLayout() {
             // flexGrow: "1",
 
             width: { xl: "85%", md: "80%", xxs: "100%" },
-
+            height:"100%",
             background: "#ffffff16",
             overflow: "scroll",
           }}

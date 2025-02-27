@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import SearchBar from "../../element/SearchBar";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import TopMedia from "../../element/TopMedia";
@@ -18,7 +18,11 @@ export default function Bookmark() {
   );
   return (
     <Box
-      sx={{ backgroundColor: "transparent", padding: "15px", height: "100%" }}
+      sx={{
+        backgroundColor: "transparent",
+        padding: { sm: "15px", xxs: "7px 0" },
+        height: "100%",
+      }}
     >
       <Box
         sx={{
@@ -34,8 +38,7 @@ export default function Bookmark() {
         {bookmark ? (
           <Box
             sx={{
-              // padding: "0 50px",
-              width: "94%",
+              width: { sm: "94%", xxs: "96%" },
               height: "100%",
 
               marginTop: "30px",
@@ -52,8 +55,13 @@ export default function Bookmark() {
                   }}
                 >
                   <FaRegBookmark fontSize={"23px"} />
-                  <Typography sx={{ fontSize: "18px" }}>
-                    Movie Recommendation
+                  <Typography
+                    sx={{
+                      fontSize: { sm: "18px", xxs: "15px" },
+                      fontWeight: { sm: "500", xxs: "600" },
+                    }}
+                  >
+                    Bookmarks
                   </Typography>
                 </Box>
 
