@@ -24,9 +24,9 @@ export default function AppLayout() {
             // flexGrow: "1",
 
             width: { xl: "85%", md: "80%", xxs: "100%" },
-            height:"100%",
+            height: "100%",
             background: "#ffffff16",
-            overflow: "scroll",
+            overflow: "auto",
           }}
         >
           <Outlet />

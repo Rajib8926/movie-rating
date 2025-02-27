@@ -65,7 +65,7 @@ export default function SearchBar() {
     [searchContent]
   );
   return (
-    <Box sx={{ width: { lg: "65%", sm: "75%", xxs: "95%" } }}>
+    <Box sx={{ width: { lg: "65%", lsm: "75%", xxs: "95%" } }}>
       <Box
         onClick={closeOverlay}
         sx={{
@@ -76,6 +76,7 @@ export default function SearchBar() {
           left: "0",
           zIndex: "3",
           display: `${searchOverlay ? "block" : "none"}`,
+          backdropFilter: { sm: "none", xxs: "blur(3px)" },
         }}
       ></Box>
       <Box sx={{ width: "100%", position: "relative" }}>
@@ -164,7 +165,9 @@ function SearchItem({ data, setSearchContent, closeOverlay }: searchItemType) {
         }}
       ></Box>
       <Box>
-        <Typography sx={{ color: "#D6D6D6", fontSize: "17px" }}>
+        <Typography
+          sx={{ color: "#D6D6D6", fontSize: { sm: "17px", xxs: "15px" } }}
+        >
           {data.Title}
         </Typography>
         <Box sx={{ display: "flex", gap: "3px" }}>
@@ -205,9 +208,9 @@ function SearchItem({ data, setSearchContent, closeOverlay }: searchItemType) {
         }}
         sx={{
           position: "absolute",
-          top: "20px",
-          right: "20px",
-          fontSize: "20px",
+          top: { sm: "20px", xxs: "7px" },
+          right: { sm: "20px", xxs: "7px" },
+          fontSize: { sm: "20px", xxs: "18px" },
         }}
       >
         {isInBookmark ? <FaBookmark /> : <FaRegBookmark color="#8b8ca1" />}

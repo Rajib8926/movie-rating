@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 
-import { styled, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { MdCatchingPokemon, MdMovie } from "react-icons/md";
 import { NavLink, useLocation } from "react-router";
 import { IoHome } from "react-icons/io5";
@@ -21,26 +21,7 @@ interface drawerType {
   open: boolean;
   toggleDrawer: (newOpen: boolean) => () => void;
 }
-const CustomDrawer = styled(Drawer)(({ theme }) => ({
-  ".css-4nmryk-MuiBackdrop-root-MuiModal-backdrop": {
-    backgroundColor: "#0303031d",
-    backdropFilter: "blur(1px)",
-  },
-  ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper ": {
-    background: "#0303031d",
-    backdropFilter: "blur(15px)",
-  },
-  [theme.breakpoints.up("sm")]: {
-    ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper ": {
-      width: "50%",
-    },
-  },
-  [theme.breakpoints.down("sm")]: {
-    ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper ": {
-      width: "80%",
-    },
-  },
-}));
+
 const navLinkStyle = {
   color: "#B7B7B8",
   textDecoration: "none",
@@ -126,7 +107,7 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
-          marginTop:"10vh"
+          marginTop: "10vh",
         }}
       >
         <MdMovie fontSize={"30px"} color="#d8a900" />
@@ -245,8 +226,22 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
   );
 
   return (
-    <CustomDrawer open={open} onClose={toggleDrawer(false)}>
+    <Drawer
+      open={open}
+      onClose={toggleDrawer(false)}
+      sx={{
+        ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
+          width: { sm: "50%", xxs: "75%" },
+          background: "#0000004e",
+          backdropFilter: "blur(15px)",
+        },
+        ".css-4nmryk-MuiBackdrop-root-MuiModal-backdrop": {
+          backdropFilter: "blur(1px)",
+          background: "#0000001a",
+        },
+      }}
+    >
       {DrawerList}
-    </CustomDrawer>
+    </Drawer>
   );
 }
