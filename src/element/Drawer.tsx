@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 
-import { Typography } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { MdCatchingPokemon, MdMovie } from "react-icons/md";
 import { NavLink, useLocation } from "react-router";
 import { IoHome } from "react-icons/io5";
@@ -38,7 +38,26 @@ const aTagStyle = {
   color: "#B7B7B8",
   fontSize: "19px",
 };
-
+const CustomDrawer = styled(Drawer)(({ theme }) => ({
+  [theme.breakpoints.up("sm")]: {
+    ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
+      width: "50%",
+      background: "#0000004e",
+      backdropFilter: "blur(15px)",
+    },
+  },
+  [theme.breakpoints.down("sm")]: {
+    ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
+      width: "80%",
+      background: "#0000004e",
+      backdropFilter: "blur(15px)",
+    },
+  },
+  ".css-4nmryk-MuiBackdrop-root-MuiModal-backdrop": {
+    backdropFilter: "blur(1px)",
+    background: "#0000001a",
+  },
+}));
 const MotionBox = motion(Box);
 export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
   const [navCurrentLocation, setNavCurrentLocation] = useState<number>(1);
@@ -226,22 +245,8 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
   );
 
   return (
-    <Drawer
-      open={open}
-      onClose={toggleDrawer(false)}
-      sx={{
-        ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
-          width: { sm: "50%", xxs: "75%" },
-          background: "#0000004e",
-          backdropFilter: "blur(15px)",
-        },
-        ".css-4nmryk-MuiBackdrop-root-MuiModal-backdrop": {
-          backdropFilter: "blur(1px)",
-          background: "#0000001a",
-        },
-      }}
-    >
+    <CustomDrawer open={open} onClose={toggleDrawer(false)}>
       {DrawerList}
-    </Drawer>
+    </CustomDrawer>
   );
 }
