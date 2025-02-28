@@ -32,8 +32,6 @@ export default function ImageSlider() {
     navigate(`/media/${id}`);
   }
   function searchTopEntertainments(dataList: string[]) {
-    
-
     const dataArr = dataList.map(async (mediaId) => {
       let returnVal;
       try {
@@ -55,8 +53,6 @@ export default function ImageSlider() {
       return returnVal;
     });
 
-    
-    
     Promise.all(dataArr).then((value) => setImgSliderMov(value));
   }
   useEffect(function () {
@@ -83,7 +79,7 @@ export default function ImageSlider() {
                   width: "100%",
                   height: "100%",
                   borderRadius: "10px",
-                  // background: "red",
+
                   cursor: "pointer",
                 }}
               >
@@ -104,7 +100,7 @@ export default function ImageSlider() {
                       alignItems: "flex-start",
                       justifyContent: "space-between",
                       height: "100%",
-                      padding: "70px",
+                      padding: { lsm: "70px", xxs: "20px", sm: "30px" },
                     }}
                   >
                     <Box>
@@ -113,8 +109,8 @@ export default function ImageSlider() {
                           display: "flex",
                           flexDirection: "column",
                           alignItems: "flex-start",
-                          fontSize: "30px",
-                          // fontWeight:"600"
+                          fontSize: { lsm: "30px", sm: "20px", xxs: "17px" },
+                          fontWeight: { lsm: "500", xxs: "600" },
                         }}
                       >
                         {data.Title}
@@ -127,7 +123,10 @@ export default function ImageSlider() {
                         }}
                       >
                         <Typography
-                          sx={{ fontSize: "13px", fontWeight: "600" }}
+                          sx={{
+                            fontSize: { lsm: "13px", xxs: "11px" },
+                            fontWeight: "600",
+                          }}
                         >
                           {data.Year}
                         </Typography>
@@ -140,7 +139,10 @@ export default function ImageSlider() {
                           }}
                         ></Box>
                         <Typography
-                          sx={{ fontSize: "13px", fontWeight: "600" }}
+                          sx={{
+                            fontSize: { lsm: "13px", xxs: "11px" },
+                            fontWeight: "600",
+                          }}
                         >
                           {data.Rated}
                         </Typography>
@@ -153,7 +155,10 @@ export default function ImageSlider() {
                           }}
                         ></Box>
                         <Typography
-                          sx={{ fontSize: "13px", fontWeight: "600" }}
+                          sx={{
+                            fontSize: { lsm: "13px", xxs: "11px" },
+                            fontWeight: "600",
+                          }}
                         >
                           {data.Runtime}
                         </Typography>
@@ -164,19 +169,23 @@ export default function ImageSlider() {
                           flexDirection: "column",
                           alignItems: "flex-start",
                           maxWidth: "300px",
-                          marginTop: "20px",
+                          marginTop: { sm: "20px", xxs: "10px" },
                         }}
                       >
                         <Typography
-                          sx={{ fontSize: "16px", fontWeight: "600" }}
+                          sx={{
+                            fontSize: { lsm: "16px", xxs: "14px" },
+                            fontWeight: "600",
+                          }}
                         >
                           Plot,
                         </Typography>
 
                         <Typography
                           textAlign={"left"}
-                          fontSize={"13px"}
+                          fontSize={{ lsm: "13px", xxs: "11px" }}
                           fontWeight={"600"}
+                          lineHeight={"1.3"}
                         >
                           {data.Plot}
                         </Typography>
@@ -193,7 +202,7 @@ export default function ImageSlider() {
                         <Box sx={{ display: "flex", gap: "3px" }}>
                           <Typography
                             sx={{
-                              fontSize: "17px",
+                              fontSize: { lsm: "17px", xxs: "14px" },
                               fontWeight: "550",
                               color: "#FDD23C",
                             }}
@@ -201,18 +210,24 @@ export default function ImageSlider() {
                             IMDB
                           </Typography>
                           <Typography
-                            sx={{ fontSize: "17px", fontWeight: "500" }}
+                            sx={{
+                              fontSize: { lsm: "16px", xxs: "14px" },
+                              fontWeight: "600",
+                            }}
                           >
                             Rating
                           </Typography>
                         </Box>
-                        <Box fontSize={"14px"}>
+                        <Box
+                          fontSize={{ lsm: "14px", xxs: "12px" }}
+                          fontWeight={"600"}
+                        >
                           <FaStar
                             style={{ marginRight: "2px", color: "#FDD23C" }}
                           />
                           {data?.imdbRating}/10
                         </Box>
-                        <Typography fontSize={"10px"}>
+                        <Typography fontSize={{ lsm: "12px", xxs: "10px" }}>
                           {data.imdbVotes}
                         </Typography>
                       </Box>

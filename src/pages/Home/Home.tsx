@@ -42,7 +42,12 @@ export default function Home() {
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: "transparent", padding: { sm: "15px" ,xxs:"7px"}, }}>
+    <Box
+      sx={{
+        backgroundColor: "transparent",
+        padding: { lg: "15px", xxs: "7px" },
+      }}
+    >
       <Box
         sx={{
           width: "100%",
@@ -55,20 +60,36 @@ export default function Home() {
         <SearchBar />
         <Box
           sx={{
-            width: "95%",
-            height: "590px",
+            width: { lg: "95%", xxs: "100%" },
+            height: {
+              md: "590px",
+              lsm: "450px",
+              sm: "370px",
+              xs: "250px",
+              xxs: "220px",
+            },
             marginTop: "40px",
           }}
         >
           <ImageSlider />
         </Box>
-        <Box sx={{ width: "96%", marginTop: "50px" }}>
+        <Box
+          sx={{
+            width: { lg: "96%", md: "98%" },
+            marginTop: { lg: "50px", xxs: "30px" },
+          }}
+        >
           <Box sx={{ marginBottom: "30px" }}>
-            <Typography sx={{ fontSize: "22px" }}>
+            <Typography
+              sx={{
+                fontSize: { lsm: "20px", sm: "17px", xxs: "15px" },
+                fontWeight: { sm: "500",xxs:"600" },
+              }}
+            >
               Movie and web series suggestion
             </Typography>
           </Box>
-          <Grid container rowGap={4}>
+          <Grid container rowGap={2}>
             {topMedia?.map((data) => (
               <MovieWebItem data={data} />
             ))}
@@ -86,13 +107,19 @@ function MovieWebItem({ data }: dataType) {
   }
 
   return (
-    <Grid item xs={3} sx={{ justifyItems: "center" }}>
+    <Grid item xl={3} md={4} sm={4} xxs={6} sx={{ justifyItems: "center" }}>
       <Box
         onClick={() => mediaClickFn(data.imdbID)}
         sx={{
           background: `url(${data.Poster})`,
-          width: "250px",
-          height: "370px",
+          width: { lg: "250px", lsm: "200px", sm: "180px", xxs: "90%" },
+          height: {
+            lg: "370px",
+            lsm: "296px",
+            sm: "266px",
+            xs: "270px",
+            xxs: "250px",
+          },
           backgroundSize: "cover",
           borderRadius: "7px",
           cursor: "pointer",
