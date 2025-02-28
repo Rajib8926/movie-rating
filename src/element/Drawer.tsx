@@ -249,7 +249,7 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
       open={open}
       onClose={toggleDrawer(false)}
       sx={{
-        "& .css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
+        "& .css-1krrxmk ": {
           width: { sm: "50%", xxs: "80%" },
           background: "#0000004e",
           backdropFilter: "blur(15px)",
