@@ -38,25 +38,25 @@ const aTagStyle = {
   color: "#B7B7B8",
   fontSize: "19px",
 };
-const CustomDrawer = styled(Drawer)(({ theme }) => ({
-  [theme.breakpoints.up("sm")]: {
-    ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
-      width: "50%",
-      background: "#0000004e",
-      backdropFilter: "blur(15px)",
-    },
-  },
-  [theme.breakpoints.down("sm")]: {
-    ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
-      width: "80%",
-      background: "#0000004e",
-      backdropFilter: "blur(15px)",
-    },
-  },
-  ".css-4nmryk-MuiBackdrop-root-MuiModal-backdrop": {
-    backdropFilter: "blur(1px)",
-    background: "#0000001a",
-  },
+const CustomDrawer = styled(Drawer)(() => ({
+  // [theme.breakpoints.up("sm")]: {
+  //   ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
+  //     width: "50%",
+  //     background: "#0000004e",
+  //     backdropFilter: "blur(15px)",
+  //   },
+  // },
+  // [theme.breakpoints.down("sm")]: {
+  //   ".css-cyqh1t-MuiPaper-root-MuiDrawer-paper": {
+  //     width: "80%",
+  //     background: "#0000004e",
+  //     backdropFilter: "blur(15px)",
+  //   },
+  // },
+  // ".css-4nmryk-MuiBackdrop-root-MuiModal-backdrop": {
+  //   backdropFilter: "blur(1px)",
+  //   background: "#0000001a",
+  // },
 }));
 const MotionBox = motion(Box);
 export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
@@ -245,7 +245,16 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
   );
 
   return (
-    <CustomDrawer open={open} onClose={toggleDrawer(false)}>
+    <CustomDrawer
+      open={open}
+      onClose={toggleDrawer(false)}
+      sx={{
+        background: "red",
+        "& .MuiDrawer-paper": {
+          backgroundColor: "#6dc938",
+        },
+      }}
+    >
       {DrawerList}
     </CustomDrawer>
   );
