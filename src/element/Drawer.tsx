@@ -251,12 +251,12 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
       sx={{
         "& .css-1krrxmk ": {
           width: { sm: "50%", xxs: "80%" },
-          background: "#00000024",
+          background: "#00000011",
           backdropFilter: "blur(15px)",
         },
         "& .css-4nmryk-MuiBackdrop-root-MuiModal-backdrop": {
           backdropFilter: "blur(1px)",
-          background: "#00000014",
+          background: "transparent",
         },
       }}
     >
