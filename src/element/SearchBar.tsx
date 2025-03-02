@@ -65,7 +65,7 @@ export default function SearchBar() {
     [searchContent]
   );
   return (
-    <Box sx={{ width: { lg: "65%", lsm: "75%", xxs: "95%" } }}>
+    <Box sx={{ width: { lg: "65%", lsm: "75%", xxs: "100%" } }}>
       <Box
         onClick={closeOverlay}
         sx={{

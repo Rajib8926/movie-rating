@@ -76,12 +76,13 @@ export default function Media() {
         <Box
           sx={{
             display: "flex",
-            gap: "25px",
-            width: "80%",
-            height: "80%",
-            padding: "15px 25px",
-            marginTop: "40px",
+            alignItems: "center",
+            gap: { xl: "25px", sm: "14px", xxs: "25px" },
+            width: { xl: "80%", xxs: "100%" },
+            padding: { sm: "15px 25px", xxs: "15px 0" },
+            marginTop: { sm: "40px", xxs: "10px" },
             position: "relative",
+            flexDirection: { lsm: "row", xxs: "column" },
           }}
         >
           {mediaInfo ? (
@@ -105,11 +106,19 @@ export default function Media() {
               </Box>
               <Box
                 sx={{
-                  background: `url(${mediaInfo?.Poster})`,
-                  height: "500px",
-                  width: "340px",
+                  background: `url(${mediaInfo.Poster})`,
+                  height: { xl: "500px", xxs: "400px" },
+                  width: { xl: "340px", xxs: "270px" },
                   backgroundSize: "cover",
                   borderRadius: "10px",
+                  position: "relative",
+                  // "&::after": {
+                  //   content: '""',
+                  //   position: "absolute",
+                  //   width: "100%",
+                  //   height: "100%",
+                  //   background: "red",
+                  // },
                 }}
               ></Box>
               <Box
@@ -117,9 +126,10 @@ export default function Media() {
                   display: "flex",
                   flexDirection: "column",
                   gap: "22px",
+                  width: { xl: "500px", xxs: "auto" },
                 }}
               >
-                <Box>
+                <Box sx={{ display: { lsm: "block", xxs: "none" } }}>
                   <Typography sx={{ fontSize: "26px" }}>
                     {mediaInfo?.Title}
                   </Typography>
@@ -304,7 +314,12 @@ export default function Media() {
                   <Typography sx={{ fontSize: "17px", fontWeight: "550" }}>
                     Plot:
                   </Typography>
-                  <Typography sx={{ width: "380px", fontSize: "13px" }}>
+                  <Typography
+                    sx={{
+                      width: { sm: "380px", xxs: "auto" },
+                      fontSize: "13px",
+                    }}
+                  >
                     {mediaInfo?.Plot}
                   </Typography>
                 </Box>

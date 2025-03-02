@@ -68,7 +68,7 @@ export default function Home() {
               xs: "250px",
               xxs: "220px",
             },
-            marginTop: "40px",
+            marginTop:{sm:"40px",xxs:"15px"} ,
           }}
         >
           <ImageSlider />
@@ -79,7 +79,7 @@ export default function Home() {
             marginTop: { lg: "50px", xxs: "30px" },
           }}
         >
-          <Box sx={{ marginBottom: "30px" }}>
+          <Box sx={{ marginBottom: {sm:"30px",xxs:"15px"} }}>
             <Typography
               sx={{
                 fontSize: { lsm: "20px", sm: "17px", xxs: "15px" },
