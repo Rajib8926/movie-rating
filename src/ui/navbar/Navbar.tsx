@@ -1,18 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import {
-  FaFacebook,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaRegBookmark,
-  FaTv,
-} from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
+import { FaRegBookmark, FaTv } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { MdCatchingPokemon, MdMovie } from "react-icons/md";
-import { SiUpwork } from "react-icons/si";
 import { Turn as Hamburger } from "hamburger-react";
 import {
   NavigateFunction,
@@ -21,6 +12,7 @@ import {
   useNavigate,
 } from "react-router";
 import TemporaryDrawer from "../../element/Drawer";
+import ContentSection from "../../element/ContentSection";
 
 const navLinkStyle = {
   color: "#B7B7B8",
@@ -32,11 +24,6 @@ const navLinkStyle = {
   padding: "0 20px",
   borderRadius: "5px",
   zIndex: "2",
-};
-
-const aTagStyle = {
-  color: "#B7B7B8",
-  fontSize: "19px",
 };
 
 const MotionBox = motion(Box);
@@ -88,6 +75,8 @@ export default function Navbar() {
     [location]
   );
   const navigate: NavigateFunction = useNavigate();
+  const webLogoSize = window.innerWidth > 1000 ? "36" : "26";
+
   return (
     <Box
       sx={{
@@ -117,7 +106,7 @@ export default function Navbar() {
           cursor: "pointer",
         }}
       >
-        <MdMovie fontSize={"26px"} color="#d8a900" />
+        <MdMovie fontSize={`${webLogoSize}px`} color="#d8a900" />
       </Box>
       <Box sx={{ display: { md: "none", xxs: "block" } }}>
         <Hamburger toggled={isOpen} toggle={setOpen} />
@@ -188,50 +177,12 @@ export default function Navbar() {
       </Box>
       <Box
         sx={{
+          display: { md: "block", xxs: "none" },
           position: "absolute",
           bottom: "20px",
-          display: { md: "flex", xxs: "none" },
-          gap: { lg: "12px", md: "8px" },
         }}
       >
-        <a
-          href="https://www.linkedin.com/in/rajib-roy-888087304/"
-          style={aTagStyle}
-          target="blank"
-        >
-          <FaLinkedinIn />
-        </a>
-        <a href="https://github.com/Rajib8926" style={aTagStyle} target="blank">
-          <FaGithub />
-        </a>
-        <a
-          href="https://www.upwork.com/freelancers/~01c4288e84ba0becad"
-          style={aTagStyle}
-          target="blank"
-        >
-          <SiUpwork />
-        </a>
-        <a
-          href="mailto:rajibroy89265@gmail.com"
-          target="blank"
-          style={aTagStyle}
-        >
-          <IoIosMail />
-        </a>
-        <a
-          href="https://www.instagram.com/rajibroy8926/"
-          style={aTagStyle}
-          target="blank"
-        >
-          <FaInstagram />
-        </a>
-        <a
-          href="https://www.facebook.com/profile.php?id=100049178316585"
-          style={aTagStyle}
-          target="blank"
-        >
-          <FaFacebook />
-        </a>
+        <ContentSection />
       </Box>
     </Box>
   );

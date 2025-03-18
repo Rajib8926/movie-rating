@@ -96,6 +96,7 @@ export default function Media() {
                   top: "20px",
                   right: "20px",
                   cursor: "pointer",
+                  display: { lsm: "block", xxs: "none" },
                 }}
               >
                 {isInBookmark ? (
@@ -112,15 +113,37 @@ export default function Media() {
                   backgroundSize: "cover",
                   borderRadius: "10px",
                   position: "relative",
-                  // "&::after": {
-                  //   content: '""',
-                  //   position: "absolute",
-                  //   width: "100%",
-                  //   height: "100%",
-                  //   background: "red",
-                  // },
+                  overflow: "hidden",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage:
+                      "linear-gradient(to top right, rgba(0, 0, 0, 0.048),rgba(0, 0, 0, 0.815))",
+                  },
                 }}
-              ></Box>
+              >
+                <Box
+                  onClick={() =>
+                    addAndRemoveBookMark(mediaInfo?.imdbID as string)
+                  }
+                  sx={{
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    cursor: "pointer",
+                    display: { lsm: "none", xxs: "block" },
+                    zIndex: "10",
+                  }}
+                >
+                  {isInBookmark ? (
+                    <FaBookmark fontSize={"23px"} />
+                  ) : (
+                    <FaRegBookmark fontSize={"23px"} />
+                  )}
+                </Box>
+              </Box>
               <Box
                 sx={{
                   display: "flex",

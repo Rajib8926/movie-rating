@@ -32,13 +32,15 @@ function Cards({ data }: dataType) {
   if (bookmark) {
     isInBookmark = bookmark.includes(data.imdbID);
   }
+  console.log(window.innerWidth);
+
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Grid item xl={4} lsm={6} xxs={12}>
       <MotionBox
         onClick={() => mediaClickFn(data.imdbID)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => window.innerWidth >= 1000 && setIsHovered(true)}
+        onMouseLeave={() => window.innerWidth >= 1000 && setIsHovered(false)}
         animate={{
           zIndex: isHovered ? "2" : "1",
           width: isHovered ? "120%" : "100%",
