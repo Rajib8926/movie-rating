@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet} from "react-router";
 
 import Navbar from "./navbar/Navbar";
 import { Box } from "@mui/material";
@@ -30,7 +30,9 @@ export default function AppLayout() {
             overflow: "auto",
           }}
         >
-          <Outlet />
+          <Box minHeight={"90vh"}>
+            <Outlet />
+          </Box>
           <Footer />
         </Box>
       </Box>

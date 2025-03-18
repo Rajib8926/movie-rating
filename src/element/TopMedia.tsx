@@ -32,7 +32,7 @@ function Cards({ data }: dataType) {
   if (bookmark) {
     isInBookmark = bookmark.includes(data.imdbID);
   }
-  console.log(window.innerWidth);
+  
 
   const [isHovered, setIsHovered] = useState(false);
   return (

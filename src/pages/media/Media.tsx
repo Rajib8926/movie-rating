@@ -50,7 +50,7 @@ export default function Media() {
       async function dataCall() {
         if (idOfMedia) {
           const data = await searchMediaById(idOfMedia);
-          console.log(data);
+         
           setMediaInfo(data);
         }
       }

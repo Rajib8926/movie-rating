@@ -5,11 +5,13 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        height: "50px",
-        display: "flex",
+        height: "60px",
+        display: { md: "none", xxs: "flex" },
         alignItems: "end",
         paddingLeft: "1rem",
+        background: "#3d3f51",
         paddingBottom: ".5rem",
+        marginTop: "30px",
       }}
     >
       <ContentSection />

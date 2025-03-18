@@ -47,7 +47,6 @@ export default function Navbar() {
 
       // navCurrentLocation = childRect.top - parentRect.top;
       setNavCurrentLocation(childRect.top - parentRect.top);
-      console.log(navCurrentLocation);
     }
   };
   const location = useLocation();
