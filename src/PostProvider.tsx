@@ -34,7 +34,6 @@ export default function PostProvider({ children }: childrenType) {
     setSearchOverlay(false);
   }
   function searchTopEntertainments(dataList: string[]) {
-    
     setIsLoading(true);
     const dataArr = dataList.map(async (mediaId) => {
       let returnVal;
@@ -57,12 +56,10 @@ export default function PostProvider({ children }: childrenType) {
       return returnVal;
     });
 
-    
     Promise.all(dataArr)
       .then((value) => setTopMedia(value))
       .then(() => setIsLoading(false));
   }
-  
 
   async function searchOperation(searchName: string) {
     try {
@@ -73,7 +70,7 @@ export default function PostProvider({ children }: childrenType) {
         throw new Error("Network response was not ok " + response.statusText);
       }
       const data = await response.json();
-     
+
       return data;
     } catch (error) {
       console.error(
@@ -85,10 +82,8 @@ export default function PostProvider({ children }: childrenType) {
   function addAndRemoveBookMark(id: string) {
     if (bookmark) {
       const result = bookmark.includes(id);
-    
 
       if (result) {
-        
         const filteredArray = bookmark.filter((number) => number !== id);
         if (filteredArray.length === 0) {
           setBookmark(null);
@@ -99,12 +94,11 @@ export default function PostProvider({ children }: childrenType) {
         setBookmark([...bookmark, id]);
       }
     } else {
-      
       setBookmark([id]);
     }
   }
-
-
+  console.log(bookmark);
+  
   async function searchMediaById(id: string) {
     try {
       const response = await fetch(

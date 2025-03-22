@@ -20,7 +20,7 @@ export default function Bookmark() {
     <Box
       sx={{
         backgroundColor: "transparent",
-        padding: { sm: "15px", xxs: "7px 0" },
+        padding: { sm: "15px", xxs: "7px" },
         height: "100%",
       }}
     >
@@ -76,7 +76,7 @@ export default function Bookmark() {
           <Box
             sx={{
               width: "95%",
-              height: "94%",
+              height: "75vh",
               alignItems: "center",
               justifyContent: "center",
               display: "flex",
@@ -90,7 +90,9 @@ export default function Bookmark() {
               }}
             >
               <FaBookmark fontSize={"27px"} color="#7486eb" />{" "}
-              <Typography sx={{ fontSize: "23px" }}>No bookmark</Typography>
+              <Typography sx={{ fontSize: { md: "23px" ,xxs:"20px"} }}>
+                No bookmark
+              </Typography>
             </Box>
           </Box>
         )}

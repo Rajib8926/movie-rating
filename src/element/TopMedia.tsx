@@ -32,7 +32,6 @@ function Cards({ data }: dataType) {
   if (bookmark) {
     isInBookmark = bookmark.includes(data.imdbID);
   }
-  
 
   const [isHovered, setIsHovered] = useState(false);
   return (

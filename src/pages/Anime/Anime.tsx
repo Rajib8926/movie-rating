@@ -40,14 +40,17 @@ const topAnime = [
 
 export default function Anime() {
   const { searchTopEntertainments, isLoading } = usePosts();
-  useEffect(function () {
-    searchTopEntertainments(topAnime);
-  }, []);
+  useEffect(
+    function () {
+      searchTopEntertainments(topAnime);
+    },
+    []
+  );
   return (
     <Box
       sx={{
         backgroundColor: "transparent",
-        padding: { sm: "15px", xxs: "7px 0" },
+        padding: { sm: "15px", xxs: "7px" },
       }}
     >
       <Box
@@ -81,7 +84,7 @@ export default function Anime() {
                 <Typography
                   sx={{
                     fontSize: { sm: "18px", xxs: "15px" },
-                    fontWeight: { sm: "500",xxs:"600" },
+                    fontWeight: { sm: "500", xxs: "600" },
                   }}
                 >
                   Anime Recommendation

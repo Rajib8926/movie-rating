@@ -47,10 +47,11 @@ export default function Media() {
 
   useEffect(
     function () {
+      window.scrollTo(0, 0);
       async function dataCall() {
         if (idOfMedia) {
           const data = await searchMediaById(idOfMedia);
-         
+
           setMediaInfo(data);
         }
       }
@@ -60,7 +61,12 @@ export default function Media() {
   );
   return (
     <Box
-      sx={{ backgroundColor: "transparent", padding: "15px", height: "100%" }}
+      sx={{
+        backgroundColor: "transparent",
+        padding: { lg: "15px", xxs: "7px" },
+        height: "100%",
+        overflow: "hidden",
+      }}
     >
       <Box
         sx={{
@@ -77,6 +83,7 @@ export default function Media() {
           sx={{
             display: "flex",
             alignItems: "center",
+            minHeight:"75vh",
             gap: { xl: "25px", sm: "14px", xxs: "25px" },
             width: { xl: "80%", xxs: "100%" },
             padding: { sm: "15px 25px", xxs: "15px 0" },

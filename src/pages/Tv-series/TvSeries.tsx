@@ -46,7 +46,7 @@ export default function TvSeries() {
     <Box
       sx={{
         backgroundColor: "transparent",
-        padding: { sm: "15px", xxs: "7px 0" },
+        padding: { sm: "15px", xxs: "7px" },
       }}
     >
       <Box
