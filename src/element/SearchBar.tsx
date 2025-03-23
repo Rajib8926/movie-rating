@@ -154,6 +154,9 @@ function SearchItem({ data, setSearchContent, closeOverlay }: searchItemType) {
         gap: "10px",
         position: "relative",
         alignItems: "center",
+        "&:hover":{
+          background:"#343349"
+        }
       }}
     >
       <Box
