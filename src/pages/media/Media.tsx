@@ -83,7 +83,7 @@ export default function Media() {
           sx={{
             display: "flex",
             alignItems: "center",
-            minHeight:"75vh",
+            minHeight: "75vh",
             gap: { xl: "25px", sm: "14px", xxs: "25px" },
             width: { xl: "80%", xxs: "100%" },
             padding: { sm: "15px 25px", xxs: "15px 0" },
@@ -124,8 +124,12 @@ export default function Media() {
                   "&::after": {
                     content: '""',
                     position: "absolute",
+                    display: "none",
                     width: "100%",
                     height: "100%",
+                    "@media (max-width: 800px)": {
+                      display: "block", // Visible for screens smaller than 600px
+                    },
                     backgroundImage:
                       "linear-gradient(to top right, rgba(0, 0, 0, 0.048),rgba(0, 0, 0, 0.815))",
                   },

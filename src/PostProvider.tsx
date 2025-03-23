@@ -97,7 +97,7 @@ export default function PostProvider({ children }: childrenType) {
       setBookmark([id]);
     }
   }
-  console.log(bookmark);
+
   
   async function searchMediaById(id: string) {
     try {
