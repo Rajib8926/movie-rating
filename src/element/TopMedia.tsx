@@ -3,7 +3,6 @@ import { usePosts } from "../PostProvider";
 import { FaBookmark, FaRegBookmark, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { useState } from "react";
 import { mediaType } from "../pages/media/Media";
 type dataType = {
   data: mediaType;
@@ -33,28 +32,17 @@ function Cards({ data }: dataType) {
     isInBookmark = bookmark.includes(data.imdbID);
   }
 
-  const [isHovered, setIsHovered] = useState(false);
   return (
     <Grid item xl={4} lsm={6} xxs={12}>
       <MotionBox
         onClick={() => mediaClickFn(data.imdbID)}
-        onMouseEnter={() => window.innerWidth >= 1000 && setIsHovered(true)}
-        onMouseLeave={() => window.innerWidth >= 1000 && setIsHovered(false)}
-        animate={{
-          zIndex: isHovered ? "2" : "1",
-          width: isHovered ? "120%" : "100%",
-          height: isHovered ? "120%" : "100%",
-          marginLeft: isHovered ? "-10%" : "0%",
-          marginTop: isHovered ? "-5%" : "0%",
-          transition: { duration: 0.3 },
-          background: isHovered ? "#1c1e2f9b" : "",
-          backdropFilter: "blur(4px)",
-          boxShadow: isHovered ? "0px 0px 12px 5px #595c7c52" : "none",
-        }}
+    
+        whileHover={window.innerWidth >= 1000?{scale:1.2, zIndex:3,background:"#1c1e2f9b",backdropFilter:"blur(4px)",boxShadow:"0px 0px 12px 5px #595c7c52" }:{}}
+        whileTap={{ scale: 1, }}
         sx={{
           background: "#1C1E2F",
           width: "100%",
-          // padding: "5px",
+          
           borderRadius: "7px",
           position: "relative",
           cursor: "pointer",
@@ -65,9 +53,7 @@ function Cards({ data }: dataType) {
           sx={{
             // width: "135px",
             width: { lsm: "140px", sm: "150px", xxs: "120px" },
-            height: isHovered
-              ? "100%"
-              : { lsm: "200px", sm: "230px", xxs: "180px" },
+            height:{ lsm: "200px", sm: "230px", xxs: "180px" },
             backgroundImage: `url(${data.Poster})`,
             backgroundSize: "cover",
             borderRadius: "4px",

@@ -85,11 +85,9 @@ export default function Navbar() {
         flexFlow: { md: "column" },
         display: { md: "flex", xxs: "flex" },
         alignItems: "center",
-        gap: { md: "110px" },
-        paddingTop: { md: "100px" },
-        padding: { md: "", xxs: "5px 10px" },
+        padding: { md: "50px 0", xxs: "5px 10px" },
         position: "relative",
-        justifyContent: { md: "flex-start", xxs: "space-between" },
+        justifyContent: { md: "space-around", xxs: "space-between" },
       }}
     >
       <Box
@@ -118,7 +116,8 @@ export default function Navbar() {
           flexFlow: "column",
           alignItems: "center",
           width: "100%",
-          gap: "110px",
+          flex:"1",
+          justifyContent:"space-around",
           position: "relative",
         }}
       >
