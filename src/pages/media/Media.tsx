@@ -40,6 +40,10 @@ export default function Media() {
   const { idOfMedia } = useParams();
   const { searchMediaById, addAndRemoveBookMark, bookmark } = usePosts();
   const [mediaInfo, setMediaInfo] = useState<mediaType | null>(null);
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
+  console.log(imageError);
+  
   let isInBookmark = false;
   if (bookmark && mediaInfo) {
     isInBookmark = bookmark.includes(mediaInfo.imdbID);
@@ -114,13 +118,14 @@ export default function Media() {
               </Box>
               <Box
                 sx={{
-                  background: `url(${mediaInfo.Poster})`,
+                  background: imageError ? 'url("public/no-image-available.jpg")' : `url(${mediaInfo.Poster})`,
                   height: { xl: "500px", xxs: "400px" },
                   width: { xl: "340px", xxs: "270px" },
                   backgroundSize: "cover",
                   borderRadius: "10px",
                   position: "relative",
                   overflow: "hidden",
+                  backgroundColor: "#2f3143",
                   "&::after": {
                     content: '""',
                     position: "absolute",
@@ -128,13 +133,41 @@ export default function Media() {
                     width: "100%",
                     height: "100%",
                     "@media (max-width: 800px)": {
-                      display: "block", // Visible for screens smaller than 600px
+                      display: "block",
                     },
                     backgroundImage:
                       "linear-gradient(to top right, rgba(0, 0, 0, 0.048),rgba(0, 0, 0, 0.815))",
                   },
                 }}
               >
+                {imageLoading && (
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "#2f3143",
+                      zIndex: 1,
+                    }}
+                  >
+                    <Typography sx={{ color: "#78879b", fontSize: "16px" }}>Loading...</Typography>
+                  </Box>
+                )}
+                <img
+                  src={mediaInfo.Poster}
+                  alt={mediaInfo.Title}
+                  style={{ display: "none" }}
+                  onLoad={() => setImageLoading(false)}
+                  onError={() => {
+                    setImageLoading(false);
+                    setImageError(true);
+                  }}
+                />
                 <Box
                   onClick={() =>
                     addAndRemoveBookMark(mediaInfo?.imdbID as string)
@@ -145,7 +178,7 @@ export default function Media() {
                     right: "10px",
                     cursor: "pointer",
                     display: { lsm: "none", xxs: "block" },
-                    zIndex: "10",
+                    zIndex: "2",
                   }}
                 >
                   {isInBookmark ? (

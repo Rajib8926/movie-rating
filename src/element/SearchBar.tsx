@@ -131,6 +131,9 @@ export default function SearchBar() {
 
 function SearchItem({ data, setSearchContent, closeOverlay }: searchItemType) {
   const navigate = useNavigate();
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
+
   function itemClickHandler(id: string) {
     navigate(`/media/${id}`);
   }
@@ -161,12 +164,45 @@ function SearchItem({ data, setSearchContent, closeOverlay }: searchItemType) {
     >
       <Box
         sx={{
-          backgroundImage: `url(${data.Poster})`,
+          backgroundImage: imageError ? 'url("https://via.placeholder.com/70x100?text=No+Image")' : `url(${data.Poster})`,
           backgroundSize: "cover",
           width: "70px",
           height: "100px",
+          position: "relative",
+          backgroundColor: "#2f3143",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-      ></Box>
+      >
+        {imageLoading && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#2f3143",
+            }}
+          >
+            <Typography sx={{ color: "#78879b", fontSize: "12px" }}>Loading...</Typography>
+          </Box>
+        )}
+        <img
+          src={data.Poster}
+          alt={data.Title}
+          style={{ display: "none" }}
+          onLoad={() => setImageLoading(false)}
+          onError={() => {
+            setImageLoading(false);
+            setImageError(true);
+          }}
+        />
+      </Box>
       <Box>
         <Typography
           sx={{ color: "#D6D6D6", fontSize: { sm: "17px", xxs: "15px" } }}
