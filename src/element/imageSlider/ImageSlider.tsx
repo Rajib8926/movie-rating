@@ -9,7 +9,7 @@ import "../../../node_modules/swiper/modules/pagination-element.css";
 import "./slider.css";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import { Box, Typography } from "@mui/material";
 import { mediaType } from "../../pages/media/Media";
 import { FaStar } from "react-icons/fa";
@@ -65,8 +65,13 @@ export default function ImageSlider() {
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Pagination]}
+        spaceBetween={20}
+        modules={[Pagination, Autoplay]}
         className="mySwiper"
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
       >
         {imgSliderMov ? (
           imgSliderMov?.map((data) => (
@@ -79,18 +84,29 @@ export default function ImageSlider() {
                   width: "100%",
                   height: "100%",
                   borderRadius: "10px",
-
                   cursor: "pointer",
+                  position: "relative",
+                  overflow:"hidden",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    background: "linear-gradient(to right, rgba(0, 0, 0, 0.904),rgba(0, 0, 0, 0.363), rgba(0, 0, 0, 0.897))",
+                    // borderRadius: "10px",
+                    zIndex: 1
+                  }
                 }}
               >
                 <Box
                   sx={{
                     width: "100%",
                     height: "100%",
-                    backdropFilter: "blur(2px)",
-                    borderRadius: "10px",
-                    backgroundImage:
-                      "linear-gradient(to right, rgba(0, 0, 0, 0.904),rgba(0, 0, 0, 0.363), rgba(0, 0, 0, 0.897))",
+                    position: "relative",
+                    zIndex: 2,
+                   
                   }}
                 >
                   <Box

@@ -40,7 +40,7 @@ body {
   object-fit: cover;
 }
 .mySwiper {
-  background-color: #1c1e2f;
+  /* background-color: #1c1e2f; */
   border-radius: 12px;
 }
 .swiper-pagination-bullet{

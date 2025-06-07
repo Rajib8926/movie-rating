@@ -1,9 +1,8 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-
-import { Typography } from "@mui/material";
+import { Typography, styled } from "@mui/material";
 import { MdCatchingPokemon, MdMovie } from "react-icons/md";
-import { NavLink, useLocation } from "react-router";
+import { NavLink } from "react-router";
 import { IoHome } from "react-icons/io5";
 import {
   FaFacebook,
@@ -15,14 +14,13 @@ import {
 } from "react-icons/fa";
 import { SiUpwork } from "react-icons/si";
 import { IoIosMail } from "react-icons/io";
-import { motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+
 interface drawerType {
   open: boolean;
   toggleDrawer: (newOpen: boolean) => () => void;
 }
 
-const navLinkStyle = {
+const StyledNavLink = styled(NavLink)(() => ({
   color: "#B7B7B8",
   textDecoration: "none",
   height: "50px",
@@ -31,59 +29,36 @@ const navLinkStyle = {
   gap: "10px",
   padding: "0 20px",
   borderRadius: "5px",
-  zIndex: "2",
-};
+  zIndex: 2,
+  position: "relative",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    color: "#d8a900"
+  },
+  "&.active": {
+    color: "#d8a900",
+    background: "#d8a90029",
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      top: "50%",
+      transform: "translateY(-50%)",
+      width: "4px",
+      height: "70%",
+      backgroundColor: "#d8a900",
+      borderRadius: "0 4px 4px 0",
+      animation: "slideIn 0.3s ease forwards"
+    }
+  }
+}));
 
 const aTagStyle = {
   color: "#B7B7B8",
   fontSize: "19px",
 };
 
-const MotionBox = motion(Box);
 export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
-  const [navCurrentLocation, setNavCurrentLocation] = useState<number>(1);
-  const parentRef = useRef<HTMLDivElement>();
-  const homeRef = useRef<HTMLDivElement | undefined>();
-  const tvRef = useRef<HTMLDivElement>();
-  const movieRef = useRef<HTMLDivElement>();
-  const animeRef = useRef<HTMLDivElement>();
-  const bookmarkRef = useRef<HTMLDivElement>();
-
-  const getPositionRelativeToParent = (
-    current: React.MutableRefObject<HTMLDivElement | undefined>
-  ) => {
-    const parentElement = parentRef.current;
-    const childElement = current.current;
-    if (parentElement && childElement) {
-      const parentRect = parentElement.getBoundingClientRect();
-      const childRect = childElement.getBoundingClientRect();
-
-      // navCurrentLocation = childRect.top - parentRect.top;
-      setNavCurrentLocation(childRect.top - parentRect.top);
-      
-    }
-  };
-  const location = useLocation();
-  function assignLocation() {
-    if (location.pathname == "/") {
-      getPositionRelativeToParent(homeRef);
-    } else if (location.pathname == "/movie") {
-      getPositionRelativeToParent(movieRef);
-    } else if (location.pathname == "/anime") {
-      getPositionRelativeToParent(animeRef);
-    } else if (location.pathname == "/tvSeries") {
-      getPositionRelativeToParent(tvRef);
-    } else if (location.pathname == "/bookmark") {
-      getPositionRelativeToParent(bookmarkRef);
-    }
-  }
-
-  useEffect(
-    function () {
-      assignLocation();
-    },
-    [location]
-  );
   const DrawerList = (
     <Box
       sx={{
@@ -97,7 +72,6 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
       onClick={toggleDrawer(false)}
     >
       <Box
-        // onClick={() => navigate("/")}
         sx={{
           height: { md: "110px", xxs: "60px" },
           width: { md: "110px", xxs: "60px" },
@@ -113,7 +87,6 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
         <MdMovie fontSize={"30px"} color="#d8a900" />
       </Box>
       <Box
-        ref={parentRef}
         sx={{
           display: "flex",
           flexFlow: "column",
@@ -123,17 +96,6 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
           position: "relative",
         }}
       >
-        <MotionBox
-          animate={{ top: `${navCurrentLocation}px` }}
-          sx={{
-            position: "absolute",
-            height: "50px",
-            top: "0",
-            width: "94%",
-            borderRadius: "8px",
-            boxShadow: "0px 0px 10px 2px#4c5279",
-          }}
-        ></MotionBox>
         <Box
           sx={{
             display: "flex",
@@ -143,36 +105,36 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
             position: "relative",
           }}
         >
-          <Box ref={homeRef}>
-            <NavLink to={"/"} style={navLinkStyle}>
+          <Box>
+            <StyledNavLink to={"/"} className={({ isActive }) => isActive ? "active" : ""}>
               <IoHome fontSize={"20px"} />
               <Typography sx={{ fontSize: "18px" }}>Home</Typography>
-            </NavLink>
+            </StyledNavLink>
           </Box>
-          <Box ref={movieRef}>
-            <NavLink to={"/movie"} style={navLinkStyle}>
+          <Box>
+            <StyledNavLink to={"/movie"} className={({ isActive }) => isActive ? "active" : ""}>
               <MdMovie fontSize={"22px"} />{" "}
               <Typography sx={{ fontSize: "18px" }}>Movies</Typography>
-            </NavLink>
+            </StyledNavLink>
           </Box>
-          <Box ref={animeRef}>
-            <NavLink to={"/anime"} style={navLinkStyle}>
+          <Box>
+            <StyledNavLink to={"/anime"} className={({ isActive }) => isActive ? "active" : ""}>
               <MdCatchingPokemon fontSize={"22px"} />{" "}
               <Typography sx={{ fontSize: "18px" }}>Anime</Typography>
-            </NavLink>
+            </StyledNavLink>
           </Box>
-          <Box ref={tvRef}>
-            <NavLink to={"/tvSeries"} style={navLinkStyle}>
+          <Box>
+            <StyledNavLink to={"/tvSeries"} className={({ isActive }) => isActive ? "active" : ""}>
               <FaTv fontSize={"20px"} />
               <Typography sx={{ fontSize: "18px" }}>Tv series</Typography>
-            </NavLink>
+            </StyledNavLink>
           </Box>
         </Box>
-        <Box sx={{ width: "94%", zIndex: "0" }} ref={bookmarkRef}>
-          <NavLink to={"/bookmark"} style={navLinkStyle}>
+        <Box sx={{ width: "94%", zIndex: "0" }}>
+          <StyledNavLink to={"/bookmark"} className={({ isActive }) => isActive ? "active" : ""}>
             <FaRegBookmark fontSize={"20px"} />{" "}
             <Typography sx={{ fontSize: "18px" }}>Bookmark</Typography>
-          </NavLink>
+          </StyledNavLink>
         </Box>
       </Box>
       <Box

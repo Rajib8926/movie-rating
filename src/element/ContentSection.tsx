@@ -1,16 +1,17 @@
-import { Box } from "@mui/material";
-import {
-  FaFacebook,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { Box, styled } from "@mui/material";
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { SiUpwork } from "react-icons/si";
-const aTagStyle = {
+
+const StyledLink = styled('a')({
   color: "#B7B7B8",
   fontSize: "19px",
-};
+  transition: "all 0.3s ease",
+  "&:hover": {
+    color: "#d8a900"
+  }
+});
+
 export default function ContentSection() {
   return (
     <Box
@@ -19,40 +20,36 @@ export default function ContentSection() {
         gap: { lg: "12px", xxs: "8px" },
       }}
     >
-      <a
+      <StyledLink
         href="https://www.linkedin.com/in/rajib-roy-888087304/"
-        style={aTagStyle}
         target="blank"
       >
         <FaLinkedinIn />
-      </a>
-      <a href="https://github.com/Rajib8926" style={aTagStyle} target="blank">
+      </StyledLink>
+      <StyledLink href="https://github.com/Rajib8926" target="blank">
         <FaGithub />
-      </a>
-      <a
+      </StyledLink>
+      <StyledLink
         href="https://www.upwork.com/freelancers/~01c4288e84ba0becad"
-        style={aTagStyle}
         target="blank"
       >
         <SiUpwork />
-      </a>
-      <a href="mailto:rajibroy89265@gmail.com" target="blank" style={aTagStyle}>
+      </StyledLink>
+      <StyledLink href="mailto:rajibroy89265@gmail.com" target="blank">
         <IoIosMail />
-      </a>
-      <a
+      </StyledLink>
+      <StyledLink
         href="https://www.instagram.com/rajibroy8926/"
-        style={aTagStyle}
         target="blank"
       >
         <FaInstagram />
-      </a>
-      <a
+      </StyledLink>
+      <StyledLink
         href="https://www.facebook.com/profile.php?id=100049178316585"
-        style={aTagStyle}
         target="blank"
       >
         <FaFacebook />
-      </a>
+      </StyledLink>
     </Box>
   );
 }

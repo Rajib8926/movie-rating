@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from "@mui/material";
 import SearchBar from "../../element/SearchBar";
 import { usePosts } from "../../PostProvider";
 import { useEffect } from "react";
-import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 import { mediaType } from "../media/Media";
 import { FaStar } from "react-icons/fa";
@@ -33,7 +32,6 @@ const topMovieWebSeries = [
 interface dataType {
   data: mediaType;
 }
-const MotionBox = motion(Box);
 export default function Home() {
   const { searchTopEntertainments, topMedia } = usePosts();
   useEffect(function () {
@@ -112,6 +110,7 @@ function MovieWebItem({ data }: dataType) {
         onClick={() => mediaClickFn(data.imdbID)}
         sx={{
           background: `url(${data.Poster})`,
+          position:"relative",
           width: { lg: "250px", lsm: "200px", sm: "180px", xxs: "90%" },
           height: {
             lg: "370px",
@@ -123,33 +122,34 @@ function MovieWebItem({ data }: dataType) {
           backgroundSize: "cover",
           borderRadius: "7px",
           cursor: "pointer",
-        }}
-      >
-        <MotionBox
-          whileHover={{
-            backgroundImage:
-              "linear-gradient(to top, rgba(0, 0, 0, 0.932),rgba(0, 0, 0, 0.212), rgba(0, 0, 0, 0.938))",
-          }}
-          sx={{
+          overflow:"hidden",
+          "&::after":{
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
             width: "100%",
             height: "100%",
-            // background: "#02020252",
-            backgroundImage:
-              "linear-gradient(to top, rgba(0, 0, 0, 0.726),rgba(0, 0, 0, 0.068), rgba(0, 0, 0, 0.897))",
-            backdropFilter: "blur(1px)",
-            borderRadius: "7px",
-            padding: "10px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
+            background: "linear-gradient(to right, rgba(0, 0, 0, 0.904),rgba(0, 0, 0, 0.363), rgba(0, 0, 0, 0.897))",
+            zIndex: 0
+          }
+        }}
+      >
+        <Box sx={{ 
+          position: "relative", 
+          zIndex: 1,
+          padding: "15px",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between"
+        }}>
           <Box>
-            <Typography sx={{ fontWeight: "600", fontSize: "16px" }}>
+            <Typography sx={{ fontWeight: "600", fontSize: "16px", color: "#B7B7B8" }}>
               {data.Title}
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
-              <Typography sx={{ fontSize: "12px", fontWeight: "600" }}>
+              <Typography sx={{ fontSize: "12px", fontWeight: "600", color: "#B7B7B8" }}>
                 {data.Year}
               </Typography>
               <Box
@@ -160,7 +160,7 @@ function MovieWebItem({ data }: dataType) {
                   background: "#B7B7B8",
                 }}
               ></Box>
-              <Typography sx={{ fontSize: "12px", fontWeight: "600" }}>
+              <Typography sx={{ fontSize: "12px", fontWeight: "600", color: "#B7B7B8" }}>
                 {data.Rated}
               </Typography>
               <Box
@@ -171,7 +171,7 @@ function MovieWebItem({ data }: dataType) {
                   background: "#B7B7B8",
                 }}
               ></Box>
-              <Typography sx={{ fontSize: "12px", fontWeight: "600" }}>
+              <Typography sx={{ fontSize: "12px", fontWeight: "600", color: "#B7B7B8" }}>
                 {data.Runtime}
               </Typography>
             </Box>
@@ -179,11 +179,11 @@ function MovieWebItem({ data }: dataType) {
           <Box>
             <Box sx={{ display: "flex", gap: "3px" }}>
               <Typography
-                sx={{ fontSize: "15px", fontWeight: "600", color: "#fde03c" }}
+                sx={{ fontSize: "15px", fontWeight: "600", color: "#B7B7B8" }}
               >
                 IMDB
               </Typography>
-              <Typography sx={{ fontSize: "15px", fontWeight: "600" }}>
+              <Typography sx={{ fontSize: "15px", fontWeight: "600", color: "#B7B7B8" }}>
                 Rating
               </Typography>
             </Box>
@@ -191,18 +191,18 @@ function MovieWebItem({ data }: dataType) {
               <Box sx={{ display: "flex", gap: "5px" }}>
                 <FaStar color="#fde03c" />
                 <Box sx={{ display: "flex" }}>
-                  <Typography fontSize={"15px"} fontWeight={"600"}>
+                  <Typography fontSize={"15px"} fontWeight={"600"} sx={{ color: "#B7B7B8" }}>
                     {data.imdbRating}/
                   </Typography>
-                  <Typography fontSize={"15px"} fontWeight={"600"}>
+                  <Typography fontSize={"15px"} fontWeight={"600"} sx={{ color: "#B7B7B8" }}>
                     10
                   </Typography>
                 </Box>
               </Box>
-              <Typography fontSize={"10px"}>{data.imdbVotes}</Typography>
+              <Typography fontSize={"10px"} sx={{ color: "#B7B7B8" }}>{data.imdbVotes}</Typography>
             </Box>
           </Box>
-        </MotionBox>
+        </Box>
       </Box>
     </Grid>
   );
