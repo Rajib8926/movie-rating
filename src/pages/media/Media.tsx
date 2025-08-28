@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { usePosts } from "../../PostProvider";
 import { Box, Typography } from "@mui/material";
@@ -42,8 +42,8 @@ export default function Media() {
   const [mediaInfo, setMediaInfo] = useState<mediaType | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
-  console.log(imageError);
-  
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+
   let isInBookmark = false;
   if (bookmark && mediaInfo) {
     isInBookmark = bookmark.includes(mediaInfo.imdbID);
@@ -51,7 +51,10 @@ export default function Media() {
 
   useEffect(
     function () {
-      window.scrollTo(0, 0);
+      sectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
       async function dataCall() {
         if (idOfMedia) {
           const data = await searchMediaById(idOfMedia);
@@ -61,10 +64,11 @@ export default function Media() {
       }
       dataCall();
     },
-    [idOfMedia]
+    [idOfMedia, searchMediaById]
   );
   return (
     <Box
+      ref={sectionRef}
       sx={{
         backgroundColor: "transparent",
         padding: { lg: "15px", xxs: "7px" },
@@ -118,7 +122,9 @@ export default function Media() {
               </Box>
               <Box
                 sx={{
-                  background: imageError ? 'url("public/no-image-available.jpg")' : `url(${mediaInfo.Poster})`,
+                  background: imageError
+                    ? 'url("public/no-image-available.jpg")'
+                    : `url(${mediaInfo.Poster})`,
                   height: { xl: "500px", xxs: "400px" },
                   width: { xl: "340px", xxs: "270px" },
                   backgroundSize: "cover",
@@ -126,18 +132,6 @@ export default function Media() {
                   position: "relative",
                   overflow: "hidden",
                   backgroundColor: "#2f3143",
-                  "&::after": {
-                    content: '""',
-                    position: "absolute",
-                    display: "none",
-                    width: "100%",
-                    height: "100%",
-                    "@media (max-width: 800px)": {
-                      display: "block",
-                    },
-                    backgroundImage:
-                      "linear-gradient(to top right, rgba(0, 0, 0, 0.048),rgba(0, 0, 0, 0.815))",
-                  },
                 }}
               >
                 {imageLoading && (
@@ -155,7 +149,9 @@ export default function Media() {
                       zIndex: 1,
                     }}
                   >
-                    <Typography sx={{ color: "#78879b", fontSize: "16px" }}>Loading...</Typography>
+                    <Typography sx={{ color: "#78879b", fontSize: "16px" }}>
+                      Loading...
+                    </Typography>
                   </Box>
                 )}
                 <img
@@ -168,6 +164,20 @@ export default function Media() {
                     setImageError(true);
                   }}
                 />
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "20px",
+                    right: "10px",
+                    cursor: "pointer",
+                    display: { lsm: "none", xxs: "block" },
+                    zIndex: "1",
+                    width: "25px",
+
+                    transform: "rotate(90deg)",
+                    boxShadow: "0 0 25px 10px black",
+                  }}
+                ></Box>
                 <Box
                   onClick={() =>
                     addAndRemoveBookMark(mediaInfo?.imdbID as string)
@@ -208,7 +218,7 @@ export default function Media() {
                     </Typography>
                     <Box
                       sx={{
-                        background: "#B7B7B8",
+                        background: "white",
                         width: "7px",
                         height: "7px",
                         borderRadius: "50%",
@@ -219,7 +229,7 @@ export default function Media() {
                     </Typography>
                     <Box
                       sx={{
-                        background: "#B7B7B8",
+                        background: "white",
                         width: "7px",
                         height: "7px",
                         borderRadius: "50%",

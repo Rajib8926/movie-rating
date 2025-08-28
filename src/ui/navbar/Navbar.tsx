@@ -5,17 +5,12 @@ import { FaRegBookmark, FaTv } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { MdCatchingPokemon, MdMovie } from "react-icons/md";
 import { Turn as Hamburger } from "hamburger-react";
-import {
-  NavigateFunction,
-  NavLink,
- 
-  useNavigate,
-} from "react-router";
+import { NavigateFunction, NavLink, useNavigate } from "react-router";
 import TemporaryDrawer from "../../element/Drawer";
 import ContentSection from "../../element/ContentSection";
 
 const StyledNavLink = styled(NavLink)({
-  color: "#B7B7B8",
+  color: "white",
   textDecoration: "none",
   height: "50px",
   display: "flex",
@@ -26,12 +21,13 @@ const StyledNavLink = styled(NavLink)({
   zIndex: 2,
   position: "relative",
   transition: "all 0.3s ease",
-  "&:hover":{
-    color:"#d8a900"
+
+  "&:hover": {
+    color: "#d8a900",
   },
   "&.active": {
     color: "#d8a900",
-    background:"#d8a90029",
+    background: "#d8a90029",
     "&::before": {
       content: '""',
       position: "absolute",
@@ -42,11 +38,10 @@ const StyledNavLink = styled(NavLink)({
       height: "70%",
       backgroundColor: "#d8a900",
       borderRadius: "0 4px 4px 0",
-      animation: "slideIn 0.3s ease forwards"
-    }
-  }
+      animation: "slideIn 0.3s ease forwards",
+    },
+  },
 });
-
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
@@ -55,7 +50,7 @@ export default function Navbar() {
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
- 
+
   const navigate: NavigateFunction = useNavigate();
   const webLogoSize = window.innerWidth > 1000 ? "36" : "26";
 
@@ -99,12 +94,11 @@ export default function Navbar() {
           flexFlow: "column",
           alignItems: "center",
           width: "100%",
-          flex:"1",
-          justifyContent:"space-around",
+          flex: "1",
+          justifyContent: "space-around",
           position: "relative",
         }}
       >
-        
         <Box
           sx={{
             display: "flex",
@@ -114,33 +108,48 @@ export default function Navbar() {
             position: "relative",
           }}
         >
-          <Box >
-            <StyledNavLink to={"/"} className={({ isActive }) => isActive ? "active" : ""}>
+          <Box>
+            <StyledNavLink
+              to={"/"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <IoHome fontSize={"20px"} />
               <Typography sx={{ fontSize: "18px" }}>Home</Typography>
             </StyledNavLink>
           </Box>
-          <Box >
-            <StyledNavLink to={"/movie"} className={({ isActive }) => isActive ? "active" : ""}>
+          <Box>
+            <StyledNavLink
+              to={"/movie"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <MdMovie fontSize={"22px"} />{" "}
               <Typography sx={{ fontSize: "18px" }}>Movies</Typography>
             </StyledNavLink>
           </Box>
           <Box>
-            <StyledNavLink to={"/anime"} className={({ isActive }) => isActive ? "active" : ""}>
+            <StyledNavLink
+              to={"/anime"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <MdCatchingPokemon fontSize={"22px"} />{" "}
               <Typography sx={{ fontSize: "18px" }}>Anime</Typography>
             </StyledNavLink>
           </Box>
-          <Box >
-            <StyledNavLink to={"/tvSeries"} className={({ isActive }) => isActive ? "active" : ""}>
+          <Box>
+            <StyledNavLink
+              to={"/tvSeries"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <FaTv fontSize={"20px"} />
               <Typography sx={{ fontSize: "18px" }}>Tv series</Typography>
             </StyledNavLink>
           </Box>
         </Box>
-        <Box sx={{ width: "94%", zIndex: "0" }} >
-          <StyledNavLink to={"/bookmark"} className={({ isActive }) => isActive ? "active" : ""}>
+        <Box sx={{ width: "94%", zIndex: "0" }}>
+          <StyledNavLink
+            to={"/bookmark"}
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <FaRegBookmark fontSize={"20px"} />{" "}
             <Typography sx={{ fontSize: "18px" }}>Bookmark</Typography>
           </StyledNavLink>

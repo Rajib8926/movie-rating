@@ -21,7 +21,7 @@ interface drawerType {
 }
 
 const StyledNavLink = styled(NavLink)(() => ({
-  color: "#B7B7B8",
+  color: "white",
   textDecoration: "none",
   height: "50px",
   display: "flex",
@@ -33,7 +33,7 @@ const StyledNavLink = styled(NavLink)(() => ({
   position: "relative",
   transition: "all 0.3s ease",
   "&:hover": {
-    color: "#d8a900"
+    color: "#d8a900",
   },
   "&.active": {
     color: "#d8a900",
@@ -48,13 +48,13 @@ const StyledNavLink = styled(NavLink)(() => ({
       height: "70%",
       backgroundColor: "#d8a900",
       borderRadius: "0 4px 4px 0",
-      animation: "slideIn 0.3s ease forwards"
-    }
-  }
+      animation: "slideIn 0.3s ease forwards",
+    },
+  },
 }));
 
 const aTagStyle = {
-  color: "#B7B7B8",
+  color: "white",
   fontSize: "19px",
 };
 
@@ -106,32 +106,47 @@ export default function TemporaryDrawer({ open, toggleDrawer }: drawerType) {
           }}
         >
           <Box>
-            <StyledNavLink to={"/"} className={({ isActive }) => isActive ? "active" : ""}>
+            <StyledNavLink
+              to={"/"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <IoHome fontSize={"20px"} />
               <Typography sx={{ fontSize: "18px" }}>Home</Typography>
             </StyledNavLink>
           </Box>
           <Box>
-            <StyledNavLink to={"/movie"} className={({ isActive }) => isActive ? "active" : ""}>
+            <StyledNavLink
+              to={"/movie"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <MdMovie fontSize={"22px"} />{" "}
               <Typography sx={{ fontSize: "18px" }}>Movies</Typography>
             </StyledNavLink>
           </Box>
           <Box>
-            <StyledNavLink to={"/anime"} className={({ isActive }) => isActive ? "active" : ""}>
+            <StyledNavLink
+              to={"/anime"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <MdCatchingPokemon fontSize={"22px"} />{" "}
               <Typography sx={{ fontSize: "18px" }}>Anime</Typography>
             </StyledNavLink>
           </Box>
           <Box>
-            <StyledNavLink to={"/tvSeries"} className={({ isActive }) => isActive ? "active" : ""}>
+            <StyledNavLink
+              to={"/tvSeries"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <FaTv fontSize={"20px"} />
               <Typography sx={{ fontSize: "18px" }}>Tv series</Typography>
             </StyledNavLink>
           </Box>
         </Box>
         <Box sx={{ width: "94%", zIndex: "0" }}>
-          <StyledNavLink to={"/bookmark"} className={({ isActive }) => isActive ? "active" : ""}>
+          <StyledNavLink
+            to={"/bookmark"}
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <FaRegBookmark fontSize={"20px"} />{" "}
             <Typography sx={{ fontSize: "18px" }}>Bookmark</Typography>
           </StyledNavLink>

@@ -1,15 +1,20 @@
 import { Box, styled } from "@mui/material";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { SiUpwork } from "react-icons/si";
 
-const StyledLink = styled('a')({
-  color: "#B7B7B8",
+const StyledLink = styled("a")({
+  color: "white",
   fontSize: "19px",
   transition: "all 0.3s ease",
   "&:hover": {
-    color: "#d8a900"
-  }
+    color: "#d8a900",
+  },
 });
 
 export default function ContentSection() {
@@ -38,10 +43,7 @@ export default function ContentSection() {
       <StyledLink href="mailto:rajibroy89265@gmail.com" target="blank">
         <IoIosMail />
       </StyledLink>
-      <StyledLink
-        href="https://www.instagram.com/rajibroy8926/"
-        target="blank"
-      >
+      <StyledLink href="https://www.instagram.com/rajibroy8926/" target="blank">
         <FaInstagram />
       </StyledLink>
       <StyledLink

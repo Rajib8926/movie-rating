@@ -9,12 +9,11 @@ import "../../../node_modules/swiper/modules/pagination-element.css";
 import "./slider.css";
 
 // import required modules
-import { Pagination, Autoplay } from "swiper/modules";
+import { useNavigate } from "react-router";
 import { Box, Typography } from "@mui/material";
 import { mediaType } from "../../pages/media/Media";
 import { FaStar } from "react-icons/fa";
-import { useNavigate } from "react-router";
-import Loading from "../Loading";
+
 const imgSliderMovies = [
   "tt10078772",
   "tt26625693",
@@ -61,76 +60,104 @@ export default function ImageSlider() {
 
   return (
     <>
-      <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        spaceBetween={20}
-        modules={[Pagination, Autoplay]}
-        className="mySwiper"
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-      >
-        {imgSliderMov ? (
-          imgSliderMov?.map((data) => (
-            <SwiperSlide>
-              <Box
-                onClick={() => mediaClickFn(data.imdbID)}
-                sx={{
-                  backgroundImage: `url(${data.imdbID}.jpg)`,
-                  backgroundSize: "cover",
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  position: "relative",
-                  overflow:"hidden",
-                  "&::after": {
-                    content: '""',
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    background: "linear-gradient(to right, rgba(0, 0, 0, 0.904),rgba(0, 0, 0, 0.363), rgba(0, 0, 0, 0.897))",
-                    // borderRadius: "10px",
-                    zIndex: 1
-                  }
-                }}
+      {imgSliderMov && (
+        <Swiper
+          pagination={{ clickable: true }}
+          slidesPerView={"auto"}
+          centeredSlides={true}
+          loop={true}
+          spaceBetween={-20} 
+        >
+          {imgSliderMov.map((posterData) => (
+            <SwiperSlide key={posterData.imdbID}>
+              <div
+                className="relative"
+                style={{ height: "100%", cursor: "pointer" }}
+                onClick={() => mediaClickFn(posterData.imdbID)}
               >
                 <Box
                   sx={{
                     width: "100%",
                     height: "100%",
-                    position: "relative",
-                    zIndex: 2,
-                   
+                    background: `url(${posterData.imdbID}.jpg)`,
+                    backgroundSize: "cover",
+                    borderRadius: "10px",
+                    overflow: "hidden",
                   }}
                 >
                   <Box
                     sx={{
+                      position: "relative",
+                      zIndex: 1,
+                      padding: "15px",
+                      height: "100%",
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: "flex-start",
-                      justifyContent: "space-between",
-                      height: "100%",
-                      padding: { lsm: "70px", xxs: "20px", sm: "30px" },
+                      justifyContent: "flex-end",
                     }}
                   >
-                    <Box>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        width: "100px",
+                        bottom: "50px",
+                        transform: "rotate(32deg)",
+                        boxShadow: "0 0 100px 50px black",
+                      }}
+                    ></Box>
+                    <Box sx={{ zIndex: "1" }}>
                       <Typography
                         sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-start",
-                          fontSize: { lsm: "30px", sm: "20px", xxs: "17px" },
-                          fontWeight: { lsm: "500", xxs: "600" },
+                          fontWeight: "600",
+                          fontSize: { md: "18px", xxs: "15px" },
                         }}
                       >
-                        {data.Title}
+                        {posterData.Title}
                       </Typography>
+                      <Box sx={{ display: "flex", gap: "3px" }}>
+                        <Typography
+                          sx={{
+                            fontSize: { md: "15px", xxs: "12px" },
+                            fontWeight: "600",
+                            color: "white",
+                          }}
+                        >
+                          IMDB
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: { md: "15px", xxs: "12px" },
+                            fontWeight: "600",
+                            color: "white",
+                          }}
+                        >
+                          Rating
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Box sx={{ display: "flex", gap: "5px" }}>
+                          <FaStar color="#fde03c" />
+                          <Box sx={{ display: "flex" }}>
+                            <Typography
+                              fontSize={{ md: "15px", xxs: "12px" }}
+                              fontWeight={"600"}
+                              sx={{ color: "white" }}
+                            >
+                              {posterData.imdbRating}/
+                            </Typography>
+                            <Typography
+                              fontSize={{ md: "15px", xxs: "12px" }}
+                              fontWeight={"600"}
+                              sx={{ color: "white" }}
+                            >
+                              10
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Typography fontSize={"10px"} sx={{ color: "white" }}>
+                          {posterData.imdbVotes}
+                        </Typography>
+                      </Box>
                       <Box
                         sx={{
                           display: "flex",
@@ -140,123 +167,56 @@ export default function ImageSlider() {
                       >
                         <Typography
                           sx={{
-                            fontSize: { lsm: "13px", xxs: "11px" },
+                            fontSize: "12px",
                             fontWeight: "600",
+                            color: "white",
                           }}
                         >
-                          {data.Year}
+                          {posterData.Year}
                         </Typography>
                         <Box
                           sx={{
-                            background: "#B7B7B8",
                             width: "7px",
                             height: "7px",
                             borderRadius: "50%",
+                            background: "white",
                           }}
                         ></Box>
                         <Typography
                           sx={{
-                            fontSize: { lsm: "13px", xxs: "11px" },
+                            fontSize: "12px",
                             fontWeight: "600",
+                            color: "white",
                           }}
                         >
-                          {data.Rated}
+                          {posterData.Rated}
                         </Typography>
                         <Box
                           sx={{
-                            background: "#B7B7B8",
                             width: "7px",
                             height: "7px",
                             borderRadius: "50%",
+                            background: "white",
                           }}
                         ></Box>
                         <Typography
                           sx={{
-                            fontSize: { lsm: "13px", xxs: "11px" },
+                            fontSize: "12px",
                             fontWeight: "600",
+                            color: "white",
                           }}
                         >
-                          {data.Runtime}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-start",
-                          maxWidth: "300px",
-                          marginTop: { sm: "20px", xxs: "10px" },
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontSize: { lsm: "16px", xxs: "14px" },
-                            fontWeight: "600",
-                          }}
-                        >
-                          Plot,
-                        </Typography>
-
-                        <Typography
-                          textAlign={"left"}
-                          fontSize={{ lsm: "13px", xxs: "11px" }}
-                          fontWeight={"600"}
-                          lineHeight={"1.3"}
-                        >
-                          {data.Plot}
-                        </Typography>
-                      </Box>
-                    </Box>
-                    <Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-start",
-                        }}
-                      >
-                        <Box sx={{ display: "flex", gap: "3px" }}>
-                          <Typography
-                            sx={{
-                              fontSize: { lsm: "17px", xxs: "14px" },
-                              fontWeight: "550",
-                              color: "#FDD23C",
-                            }}
-                          >
-                            IMDB
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: { lsm: "16px", xxs: "14px" },
-                              fontWeight: "600",
-                            }}
-                          >
-                            Rating
-                          </Typography>
-                        </Box>
-                        <Box
-                          fontSize={{ lsm: "14px", xxs: "12px" }}
-                          fontWeight={"600"}
-                        >
-                          <FaStar
-                            style={{ marginRight: "2px", color: "#FDD23C" }}
-                          />
-                          {data?.imdbRating}/10
-                        </Box>
-                        <Typography fontSize={{ lsm: "12px", xxs: "10px" }}>
-                          {data.imdbVotes}
+                          {posterData.Runtime}
                         </Typography>
                       </Box>
                     </Box>
                   </Box>
                 </Box>
-              </Box>
+              </div>
             </SwiperSlide>
-          ))
-        ) : (
-          <Loading />
-        )}
-      </Swiper>
+          ))}
+        </Swiper>
+      )}
     </>
   );
 }

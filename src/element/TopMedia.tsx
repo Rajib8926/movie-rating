@@ -36,13 +36,22 @@ function Cards({ data }: dataType) {
     <Grid item xl={4} lsm={6} xxs={12}>
       <MotionBox
         onClick={() => mediaClickFn(data.imdbID)}
-    
-        whileHover={window.innerWidth >= 1000?{scale:1.2, zIndex:3,background:"#1c1e2f9b",backdropFilter:"blur(4px)",boxShadow:"0px 0px 12px 5px #595c7c52" }:{}}
-        whileTap={{ scale: 1, }}
+        whileHover={
+          window.innerWidth >= 1000
+            ? {
+                scale: 1.2,
+                zIndex: 3,
+                background: "#1c1e2f9b",
+                backdropFilter: "blur(4px)",
+                boxShadow: "0px 0px 12px 5px #595c7c52",
+              }
+            : {}
+        }
+        whileTap={{ scale: 1 }}
         sx={{
           background: "#1C1E2F",
           width: "100%",
-          
+
           borderRadius: "7px",
           position: "relative",
           cursor: "pointer",
@@ -53,7 +62,7 @@ function Cards({ data }: dataType) {
           sx={{
             // width: "135px",
             width: { lsm: "140px", sm: "150px", xxs: "120px" },
-            height:{ lsm: "200px", sm: "230px", xxs: "180px" },
+            height: { lsm: "200px", sm: "230px", xxs: "180px" },
             backgroundImage: `url(${data.Poster})`,
             backgroundSize: "cover",
             borderRadius: "4px",
@@ -81,7 +90,7 @@ function Cards({ data }: dataType) {
                   width: "7px",
                   height: "7px",
                   borderRadius: "50%",
-                  background: "#B7B7B8",
+                  background: "white",
                 }}
               ></Box>
               <Typography sx={{ fontSize: "11px", fontWeight: "600" }}>
@@ -92,7 +101,7 @@ function Cards({ data }: dataType) {
                   width: "7px",
                   height: "7px",
                   borderRadius: "50%",
-                  background: "#B7B7B8",
+                  background: "white",
                 }}
               ></Box>
               <Typography sx={{ fontSize: "11px", fontWeight: "600" }}>
