@@ -38,9 +38,11 @@ const topTvSeries = [
   "tt0121955", // South Park
 ];
 export default function TvSeries() {
-  const { searchTopEntertainments, isLoading } = usePosts();
+  const { searchTopEntertainments, isLoading, currentTopMedia } = usePosts();
   useEffect(function () {
-    searchTopEntertainments(topTvSeries);
+    if (currentTopMedia !== "tvSeries") {
+      searchTopEntertainments(topTvSeries, "tvSeries");
+    }
   }, []);
   return (
     <Box
@@ -79,7 +81,7 @@ export default function TvSeries() {
                 <Typography
                   sx={{
                     fontSize: { sm: "18px", xxs: "15px" },
-                    fontWeight: { sm: "500",xxs:"600" },
+                    fontWeight: { sm: "500", xxs: "600" },
                   }}
                 >
                   Tv Recommendation

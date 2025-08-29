@@ -12,12 +12,13 @@ interface contextType {
   openOverlay(): void;
   closeOverlay(): void;
   searchOverlay: boolean;
-  searchTopEntertainments(dataList: string[]): void;
+  searchTopEntertainments(dataList: string[], currentMedia: string): void;
   topMedia: mediaType[] | null;
   bookmark: string[] | null;
   setTopMedia: React.Dispatch<React.SetStateAction<mediaType[] | null>>;
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  currentTopMedia: string | null;
 }
 const PostContext = createContext({} as contextType);
 export default function PostProvider({ children }: childrenType) {
@@ -25,6 +26,7 @@ export default function PostProvider({ children }: childrenType) {
   const [searchOverlay, setSearchOverlay] = useState<boolean>(false);
   const [topMedia, setTopMedia] = useState<mediaType[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [currentTopMedia, setCurrentTopMedia] = useState<null | string>(null);
   const testValue: number = 10;
 
   function openOverlay() {
@@ -33,13 +35,13 @@ export default function PostProvider({ children }: childrenType) {
   function closeOverlay() {
     setSearchOverlay(false);
   }
-  function searchTopEntertainments(dataList: string[]) {
+  function searchTopEntertainments(dataList: string[], currentMedia: string) {
     setIsLoading(true);
     const dataArr = dataList.map(async (mediaId) => {
       let returnVal;
       try {
         const response = await fetch(
-          `https://www.omdbapi.com/?i=${mediaId}&apikey=c892d3a9`
+          `https://www.omdbapi.com/?i=${mediaId}&apikey=16a181ac`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok " + response.statusText);
@@ -58,13 +60,14 @@ export default function PostProvider({ children }: childrenType) {
 
     Promise.all(dataArr)
       .then((value) => setTopMedia(value))
+      .then(() => setCurrentTopMedia(currentMedia))
       .then(() => setIsLoading(false));
   }
 
   async function searchOperation(searchName: string) {
     try {
       const response = await fetch(
-        `https://www.omdbapi.com/?s=${searchName}&apikey=c892d3a9`
+        `https://www.omdbapi.com/?s=${searchName}&apikey=16a181ac`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);
@@ -98,11 +101,11 @@ export default function PostProvider({ children }: childrenType) {
     }
   }
 
-  
+
   async function searchMediaById(id: string) {
     try {
       const response = await fetch(
-        `https://www.omdbapi.com/?i=${id}&apikey=c892d3a9`
+        `https://www.omdbapi.com/?i=${id}&apikey=16a181ac`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok " + response.statusText);
@@ -132,6 +135,7 @@ export default function PostProvider({ children }: childrenType) {
         setTopMedia,
         isLoading,
         setIsLoading,
+        currentTopMedia,
       }}
     >
       {children}

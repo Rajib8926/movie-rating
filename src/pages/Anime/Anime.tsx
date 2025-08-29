@@ -39,13 +39,14 @@ const topAnime = [
 ];
 
 export default function Anime() {
-  const { searchTopEntertainments, isLoading } = usePosts();
-  useEffect(
-    function () {
-      searchTopEntertainments(topAnime);
-    },
-    []
-  );
+  const { searchTopEntertainments, isLoading, currentTopMedia } = usePosts();
+  useEffect(() => {
+    if (currentTopMedia !== "anime") {
+      // ✅ only fetch if not already available
+      searchTopEntertainments(topAnime, "anime");
+    }
+  }, [topAnime]);
+
   return (
     <Box
       sx={{

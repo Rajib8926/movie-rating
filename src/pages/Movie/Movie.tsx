@@ -29,10 +29,12 @@ const TopMovieId = [
   "tt5177114",
 ];
 export default function Movie() {
-  const { searchTopEntertainments, isLoading } = usePosts();
+  const { searchTopEntertainments, isLoading, currentTopMedia } = usePosts();
   useEffect(function () {
     async function getData() {
-      searchTopEntertainments(TopMovieId);
+      if (currentTopMedia !== "movie") {
+        searchTopEntertainments(TopMovieId, "movie");
+      }
     }
     getData();
   }, []);

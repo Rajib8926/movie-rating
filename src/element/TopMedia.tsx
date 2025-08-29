@@ -10,7 +10,7 @@ type dataType = {
 
 export default function TopMedia() {
   const { topMedia } = usePosts();
-
+  
   return (
     <Grid container spacing={2}>
       {topMedia?.map((data) => (

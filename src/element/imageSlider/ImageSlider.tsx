@@ -10,7 +10,7 @@ import "./slider.css";
 
 // import required modules
 import { useNavigate } from "react-router";
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { mediaType } from "../../pages/media/Media";
 import { FaStar } from "react-icons/fa";
 
@@ -35,7 +35,7 @@ export default function ImageSlider() {
       let returnVal;
       try {
         const response = await fetch(
-          `https://www.omdbapi.com/?i=${mediaId}&apikey=c892d3a9`
+          `https://www.omdbapi.com/?i=${mediaId}&apikey=16a181ac`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok " + response.statusText);
@@ -55,18 +55,20 @@ export default function ImageSlider() {
     Promise.all(dataArr).then((value) => setImgSliderMov(value));
   }
   useEffect(function () {
-    searchTopEntertainments(imgSliderMovies);
+    if (!imgSliderMov) {
+      searchTopEntertainments(imgSliderMovies);
+    }
   }, []);
 
   return (
     <>
-      {imgSliderMov && (
+      {imgSliderMov ? (
         <Swiper
           pagination={{ clickable: true }}
           slidesPerView={"auto"}
           centeredSlides={true}
           loop={true}
-          spaceBetween={-20} 
+          spaceBetween={-20}
         >
           {imgSliderMov.map((posterData) => (
             <SwiperSlide key={posterData.imdbID}>
@@ -216,6 +218,44 @@ export default function ImageSlider() {
             </SwiperSlide>
           ))}
         </Swiper>
+      ) : (
+        <Box
+          sx={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Skeleton
+            sx={{
+              bgcolor: "grey.900",
+              height: "75%",
+              width: "10%",
+              borderRadius: "0 10px 10px 0",
+            }}
+            variant="rectangular"
+          />
+          <Skeleton
+            sx={{
+              bgcolor: "grey.900",
+              width: "70%",
+              height: "100%",
+              borderRadius: "10px",
+            }}
+            variant="rectangular"
+          />
+          <Skeleton
+            sx={{
+              bgcolor: "grey.900",
+              height: "75%",
+              width: "10%",
+              borderRadius: "10px 0 0 10px",
+            }}
+            variant="rectangular"
+          />
+        </Box>
       )}
     </>
   );

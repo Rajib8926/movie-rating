@@ -38,7 +38,7 @@ export default function Home() {
   useEffect(
     function () {
       // setTopMedia(null);
-      searchTopEntertainments(topMovieWebSeries);
+      searchTopEntertainments(topMovieWebSeries, "");
     },
     [topMovieWebSeries]
   );

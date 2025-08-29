@@ -11,7 +11,7 @@ export default function Bookmark() {
   useEffect(
     function () {
       if (bookmark) {
-        searchTopEntertainments(bookmark);
+        searchTopEntertainments(bookmark,"");
       }
     },
     [bookmark]
